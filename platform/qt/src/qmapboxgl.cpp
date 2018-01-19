@@ -1568,3 +1568,9 @@ QMapboxGLPrivate::QMapboxGLPrivate(QMapboxGL *q, const QMapboxGLSettings &settin
 QMapboxGLPrivate::~QMapboxGLPrivate()
 {
 }
+
+void QMapboxGLPrivate::update(std::shared_ptr<mbgl::UpdateParameters> parameters)
+{
+    backend->updateParameters(parameters);
+    emit needsRendering();
+}

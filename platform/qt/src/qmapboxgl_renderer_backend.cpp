@@ -12,6 +12,7 @@ QMapboxGLRendererBackend::QMapboxGLRendererBackend(qreal pixelRatio,
         mbgl::DefaultFileSource &fs, mbgl::ThreadPool &tp, QMapboxGLSettings::GLContextMode mode)
     : m_renderer(*this, pixelRatio, fs, tp, static_cast<mbgl::GLContextMode>(mode))
 {
+    // FIXME: crete the renderer on the render thread
 }
 
 QMapboxGLRendererBackend::~QMapboxGLRendererBackend()

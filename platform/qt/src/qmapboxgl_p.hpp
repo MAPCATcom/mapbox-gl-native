@@ -28,7 +28,7 @@ public:
     // mbgl::RendererFrontend implementation.
     void reset() final {}
     void setObserver(mbgl::RendererObserver &) final {}
-    void update(std::shared_ptr<mbgl::UpdateParameters>) final {}
+    void update(std::shared_ptr<mbgl::UpdateParameters>) final;
 
     mbgl::EdgeInsets margins;
 
