@@ -239,6 +239,10 @@ HTTPRequest::HTTPRequest(HTTPFileSource::Impl* context_, Resource resource_, Fil
             std::string("If-Modified-Since: ") + util::rfc1123(*resource.priorModified);
         headers = curl_slist_append(headers, time.c_str());
     }
+    if (resource.postData) {
+        handleError(curl_easy_setopt(handle, CURLOPT_POSTFIELDS, resource.postData->c_str()));
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+    }
 
     if (headers) {
         curl_easy_setopt(handle, CURLOPT_HTTPHEADER, headers);

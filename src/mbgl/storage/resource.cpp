@@ -60,6 +60,15 @@ Resource Resource::image(const std::string& url) {
     };
 }
 
+Resource Resource::post(const std::string& url, const std::string& postData) {
+    Resource result{
+        Resource::Kind::Unknown,
+        url
+    };
+    result.postData = std::make_shared<std::string>(postData);
+    return result;
+}
+
 Resource Resource::spriteImage(const std::string& base, float pixelRatio) {
     util::URL url(base);
     return Resource{ Resource::Kind::SpriteImage,

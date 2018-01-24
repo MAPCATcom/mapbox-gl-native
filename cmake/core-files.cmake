@@ -320,6 +320,7 @@ set(MBGL_CORE_FILES
     include/mbgl/storage/resource.hpp
     include/mbgl/storage/resource_transform.hpp
     include/mbgl/storage/response.hpp
+    include/mbgl/storage/map_init.hpp
     src/mbgl/storage/asset_file_source.hpp
     src/mbgl/storage/http_file_source.hpp
     src/mbgl/storage/local_file_source.hpp
@@ -327,6 +328,7 @@ set(MBGL_CORE_FILES
     src/mbgl/storage/resource.cpp
     src/mbgl/storage/resource_transform.cpp
     src/mbgl/storage/response.cpp
+    src/mbgl/storage/map_init.cpp
 
     # style
     include/mbgl/style/conversion.hpp
