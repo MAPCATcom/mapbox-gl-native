@@ -69,6 +69,7 @@ public:
     static Resource spriteImage(const std::string& base, float pixelRatio);
     static Resource spriteJSON(const std::string& base, float pixelRatio);
     static Resource image(const std::string& url);
+    static Resource post(const std::string& url, const std::string& postData);
     
     Kind kind;
     LoadingMethod loadingMethod;
@@ -81,6 +82,7 @@ public:
     optional<Timestamp> priorExpires = {};
     optional<std::string> priorEtag = {};
     std::shared_ptr<const std::string> priorData;
+    std::shared_ptr<const std::string> postData;
 };
 
 
