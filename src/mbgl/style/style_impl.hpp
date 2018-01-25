@@ -30,6 +30,12 @@ class FileSource;
 class AsyncRequest;
 class SpriteLoader;
 
+namespace util {
+
+class LanguageConfig;
+
+} // namespace util
+
 namespace style {
 
 class Style::Impl : public SpriteLoaderObserver,
@@ -91,6 +97,9 @@ public:
 
     void dumpDebugLogs() const;
 
+    void setLanguage(const std::string& languageCode);
+    const std::shared_ptr<util::LanguageConfig> getLanguageConfig() const;
+
     bool mutated = false;
     bool loaded = false;
     bool spriteLoaded = false;
@@ -138,6 +147,8 @@ private:
     Observer* observer = &nullObserver;
 
     std::exception_ptr lastError;
+
+    std::shared_ptr<util::LanguageConfig> languageConfig;
 };
 
 } // namespace style

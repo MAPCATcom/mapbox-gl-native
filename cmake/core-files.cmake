@@ -678,6 +678,8 @@ set(MBGL_CORE_FILES
     src/mbgl/util/intersection_tests.hpp
     src/mbgl/util/io.cpp
     src/mbgl/util/io.hpp
+    src/mbgl/util/language_config.cpp
+    src/mbgl/util/language_config.hpp
     src/mbgl/util/logging.cpp
     src/mbgl/util/longest_common_subsequence.hpp
     src/mbgl/util/mapbox.cpp

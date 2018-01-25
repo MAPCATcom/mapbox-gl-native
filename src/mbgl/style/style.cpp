@@ -30,6 +30,14 @@ std::string Style::getURL() const {
     return impl->getURL();
 }
 
+void Style::setLanguage(const std::string& languageCode) {
+    impl->setLanguage(languageCode);
+}
+
+const std::shared_ptr<util::LanguageConfig> Style::getLanguageConfig() const {
+    return impl->getLanguageConfig();
+}
+
 std::string Style::getName() const {
     return impl->getName();
 }

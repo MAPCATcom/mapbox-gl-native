@@ -8,6 +8,7 @@
 #include <mbgl/util/throttler.hpp>
 #include <mbgl/actor/actor.hpp>
 #include <mbgl/geometry/feature_index.hpp>
+#include <mbgl/util/language_config.hpp>
 
 #include <atomic>
 #include <memory>
@@ -15,6 +16,18 @@
 #include <vector>
 
 namespace mbgl {
+
+namespace util {
+
+class LanguageConfig;
+
+}
+
+namespace style {
+
+class Style;
+
+} // namespace style
 
 class GeometryTileData;
 class RenderLayer;
@@ -101,7 +114,7 @@ public:
     void performedFadePlacement() override;
     
     void commitFeatureIndex() override;
-    
+    const std::shared_ptr<util::LanguageConfig> getLanguageConfig() const;
 protected:
     const GeometryTileData* getData() {
         return data.get();
@@ -146,6 +159,7 @@ private:
     };
 
     FadeState fadeState = FadeState::Loaded;
+    const std::shared_ptr<util::LanguageConfig> languageConfig;
 public:
     optional<gl::Texture> glyphAtlasTexture;
     optional<gl::Texture> iconAtlasTexture;

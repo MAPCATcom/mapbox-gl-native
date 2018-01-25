@@ -236,6 +236,14 @@ void Map::setStyle(std::unique_ptr<Style> style) {
     impl->annotationManager.setStyle(*impl->style);
 }
 
+void Map::setLanguage(const std::string& languageCode) {
+    if (!impl->style) {
+        Log::Warning(Event::Style, "could not set language of style of map, because it is not loaded yet");
+    } else {
+        this->impl->style->setLanguage(languageCode);
+    }
+}
+
 #pragma mark - Transitions
 
 void Map::cancelTransitions() {
@@ -768,7 +776,8 @@ void Map::Impl::onUpdate() {
         style->impl->getLayerImpls(),
         annotationManager,
         prefetchZoomDelta,
-        bool(stillImageRequest)
+        bool(stillImageRequest),
+        style->getLanguageConfig()
     };
 
     rendererFrontend.update(std::make_shared<UpdateParameters>(std::move(params)));

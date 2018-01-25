@@ -21,6 +21,12 @@ class Anchor;
 class RenderLayer;
 class PlacedSymbol;
 
+namespace util {
+
+class LanguageConfig;
+
+} // namespace util
+
 namespace style {
 class Filter;
 } // namespace style
@@ -31,7 +37,8 @@ public:
                  const std::vector<const RenderLayer*>&,
                  std::unique_ptr<GeometryTileLayer>,
                  ImageDependencies&,
-                 GlyphDependencies&);
+                 GlyphDependencies&,
+                 const std::shared_ptr<util::LanguageConfig>);
 
     void prepare(const GlyphMap&, const GlyphPositions&,
                  const ImageMap&, const ImagePositions&,

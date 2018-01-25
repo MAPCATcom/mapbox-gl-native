@@ -55,11 +55,13 @@ GeometryTile::GeometryTile(const OverscaledTileID& id_,
              obsolete,
              parameters.mode,
              parameters.pixelRatio,
-             parameters.debugOptions & MapDebugOptions::Collision),
+             parameters.debugOptions & MapDebugOptions::Collision,
+             parameters.languageConfig),
       glyphManager(parameters.glyphManager),
       imageManager(parameters.imageManager),
       mode(parameters.mode),
-      showCollisionBoxes(parameters.debugOptions & MapDebugOptions::Collision) {
+      showCollisionBoxes(parameters.debugOptions & MapDebugOptions::Collision),
+      languageConfig(parameters.languageConfig) {
 }
 
 GeometryTile::~GeometryTile() {
@@ -220,6 +222,10 @@ void GeometryTile::commitFeatureIndex() {
     if (pendingData) {
         data = std::move(pendingData);
     }
+}
+
+const std::shared_ptr<util::LanguageConfig> GeometryTile::getLanguageConfig() const {
+    return languageConfig;
 }
 
 void GeometryTile::queryRenderedFeatures(

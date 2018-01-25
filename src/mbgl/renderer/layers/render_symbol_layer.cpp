@@ -40,12 +40,14 @@ std::unique_ptr<SymbolLayout> RenderSymbolLayer::createLayout(const BucketParame
                                                               const std::vector<const RenderLayer*>& group,
                                                               std::unique_ptr<GeometryTileLayer> layer,
                                                               GlyphDependencies& glyphDependencies,
-                                                              ImageDependencies& imageDependencies) const {
+                                                              ImageDependencies& imageDependencies,
+                                                              const std::shared_ptr<util::LanguageConfig> languageConfig) const {
     return std::make_unique<SymbolLayout>(parameters,
                                           group,
                                           std::move(layer),
                                           imageDependencies,
-                                          glyphDependencies);
+                                          glyphDependencies,
+                                          languageConfig);
 }
 
 void RenderSymbolLayer::transition(const TransitionParameters& parameters) {

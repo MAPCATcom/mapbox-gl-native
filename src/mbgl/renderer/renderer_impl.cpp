@@ -119,7 +119,8 @@ void Renderer::Impl::render(const UpdateParameters& updateParameters) {
         updateParameters.annotationManager,
         *imageManager,
         *glyphManager,
-        updateParameters.prefetchZoomDelta
+        updateParameters.prefetchZoomDelta,
+        updateParameters.languageConfig
     };
 
     glyphManager->setURL(updateParameters.glyphURL);

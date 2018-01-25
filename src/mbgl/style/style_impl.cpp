@@ -19,6 +19,7 @@
 #include <mbgl/storage/file_source.hpp>
 #include <mbgl/storage/resource.hpp>
 #include <mbgl/storage/response.hpp>
+#include <mbgl/util/language_config.hpp>
 
 namespace mbgl {
 namespace style {
@@ -33,6 +34,7 @@ Style::Impl::Impl(Scheduler& scheduler_, FileSource& fileSource_, float pixelRat
       observer(&nullObserver) {
     spriteLoader->setObserver(this);
     light->setObserver(this);
+    languageConfig = std::make_shared<util::LanguageConfig>();
 }
 
 Style::Impl::~Impl() = default;
@@ -343,6 +345,15 @@ void Style::Impl::dumpDebugLogs() const {
     for (const auto& source : sources) {
         source->dumpDebugLogs();
     }
+}
+
+void Style::Impl::setLanguage(const std::string& languageCode) {
+    languageConfig->setLanguage(languageCode);
+    observer->onUpdate();
+}
+
+const std::shared_ptr<util::LanguageConfig> Style::Impl::getLanguageConfig() const {
+    return languageConfig;
 }
 
 const std::string& Style::Impl::getGlyphURL() const {
