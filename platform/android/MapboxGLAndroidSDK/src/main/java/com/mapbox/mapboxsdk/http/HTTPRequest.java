@@ -7,7 +7,7 @@ import android.os.Build;
 import android.text.TextUtils;
 
 import com.mapbox.mapboxsdk.BuildConfig;
-import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.Mapcat;
 import com.mapbox.mapboxsdk.constants.MapboxConstants;
 
 import java.io.IOException;
@@ -16,16 +16,30 @@ import java.net.NoRouteToHostException;
 import java.net.ProtocolException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
+import javax.security.cert.CertificateException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Dispatcher;
 import okhttp3.HttpUrl;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.internal.Util;
 import timber.log.Timber;
@@ -33,10 +47,11 @@ import timber.log.Timber;
 import static android.util.Log.DEBUG;
 import static android.util.Log.INFO;
 import static android.util.Log.WARN;
+import static javax.net.ssl.SSLContext.*;
 
 class HTTPRequest implements Callback {
 
-  private static OkHttpClient mClient = new OkHttpClient.Builder().dispatcher(getDispatcher()).build();
+  private static OkHttpClient mClient = createHttpClient();
   private static boolean logEnabled = true;
   private static boolean logRequestUrl = false;
 
@@ -68,7 +83,7 @@ class HTTPRequest implements Callback {
   private native void nativeOnResponse(int code, String etag, String modified, String cacheControl, String expires,
                                        String retryAfter, String xRateLimitReset, byte[] body);
 
-  private HTTPRequest(long nativePtr, String resourceUrl, String etag, String modified) {
+  private HTTPRequest(long nativePtr, String resourceUrl, String etag, String modified, String postData) {
     mNativePtr = nativePtr;
 
     try {
@@ -76,7 +91,7 @@ class HTTPRequest implements Callback {
       final String host = httpUrl.host().toLowerCase(MapboxConstants.MAPBOX_LOCALE);
 
       // Don't try a request to remote server if we aren't connected
-      if (!Mapbox.isConnected() && !host.equals("127.0.0.1") && !host.equals("localhost")) {
+      if (!Mapcat.isConnected() && !host.equals("127.0.0.1") && !host.equals("localhost")) {
         throw new NoRouteToHostException("No Internet connection available.");
       }
 
@@ -92,12 +107,17 @@ class HTTPRequest implements Callback {
 
       Request.Builder builder = new Request.Builder()
         .url(resourceUrl)
-        .tag(resourceUrl.toLowerCase(MapboxConstants.MAPBOX_LOCALE))
         .addHeader("User-Agent", getUserAgent());
       if (etag.length() > 0) {
         builder = builder.addHeader("If-None-Match", etag);
       } else if (modified.length() > 0) {
         builder = builder.addHeader("If-Modified-Since", modified);
+      }
+      if (httpUrl.isHttps()) {
+        builder = builder.addHeader("X-Api-Key", Mapcat.getAccessToken());
+      }
+      if (!postData.isEmpty()) {
+        builder = builder.post(RequestBody.create(MediaType.parse("application/json"), postData));
       }
       mRequest = builder.build();
       mCall = mClient.newCall(mRequest);
@@ -105,6 +125,13 @@ class HTTPRequest implements Callback {
     } catch (Exception exception) {
       handleFailure(mCall, exception);
     }
+  }
+
+  private static OkHttpClient createHttpClient() {
+    OkHttpClient.Builder builder = new OkHttpClient.Builder();
+    builder = builder.dispatcher(getDispatcher());
+    builder = builder.hostnameVerifier((s, sslSession) -> true);
+    return builder.build();
   }
 
   public void cancel() {
@@ -219,7 +246,7 @@ class HTTPRequest implements Callback {
 
   private String getApplicationIdentifier() {
     try {
-      Context context = Mapbox.getApplicationContext();
+      Context context = Mapcat.getApplicationContext();
       PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
       return String.format("%s/%s (%s)", context.getPackageName(), packageInfo.versionName, packageInfo.versionCode);
     } catch (Exception exception) {

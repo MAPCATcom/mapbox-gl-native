@@ -4,7 +4,7 @@ import android.app.Application;
 import android.os.StrictMode;
 import android.text.TextUtils;
 
-import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.Mapcat;
 import com.mapbox.mapboxsdk.testapp.utils.TokenUtils;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -56,7 +56,7 @@ public class MapboxApplication extends Application {
       Timber.e(ACCESS_TOKEN_NOT_SET_MESSAGE);
     }
 
-    Mapbox.getInstance(getApplicationContext(), mapboxAccessToken);
+    Mapcat.getInstance(getApplicationContext(), mapboxAccessToken);
   }
 
   private void initializeLogger() {

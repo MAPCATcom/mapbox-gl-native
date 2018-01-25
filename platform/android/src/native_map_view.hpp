@@ -6,6 +6,7 @@
 #include <mbgl/util/noncopyable.hpp>
 #include <mbgl/util/default_thread_pool.hpp>
 #include <mbgl/util/run_loop.hpp>
+#include <mbgl/storage/map_init.hpp>
 #include <mbgl/storage/default_file_source.hpp>
 #include <mbgl/storage/network_status.hpp>
 
@@ -77,6 +78,8 @@ public:
     // JNI //
 
     void resizeView(jni::JNIEnv&, int, int);
+
+    void initMapcatMap(jni::JNIEnv&, jni::jboolean, jni::jboolean, jni::String);
 
     jni::String getStyleUrl(jni::JNIEnv&);
 
@@ -255,6 +258,8 @@ private:
     jni::UniqueWeakObject<NativeMapView> javaPeer;
 
     MapRenderer& mapRenderer;
+    std::shared_ptr<mbgl::MapInit> mapInit;
+    std::unique_ptr<mbgl::AsyncRequest> mapInitRequest;
 
     std::string styleUrl;
     std::string apiKey;

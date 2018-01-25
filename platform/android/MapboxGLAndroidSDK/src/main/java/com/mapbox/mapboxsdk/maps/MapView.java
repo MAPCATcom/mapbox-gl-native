@@ -91,6 +91,8 @@ public class MapView extends FrameLayout {
 
   private MapRenderer mapRenderer;
 
+  private LayerOptions layerOptions;
+
   @UiThread
   public MapView(@NonNull Context context) {
     super(context);
@@ -319,6 +321,9 @@ public class MapView extends FrameLayout {
 
     nativeMapView = new NativeMapView(this, mapRenderer);
     nativeMapView.resizeView(getMeasuredWidth(), getMeasuredHeight());
+    if (layerOptions != null) {
+      nativeMapView.initMapcatMap(layerOptions);
+    }
   }
 
   private void initRenderSurface() {
@@ -529,6 +534,13 @@ public class MapView extends FrameLayout {
       return;
     }
     nativeMapView.setStyleUrl(url);
+  }
+
+  public void initMapcatMap(LayerOptions _layerOptions) {
+    layerOptions = _layerOptions;
+    if (isMapInitialized()) {
+      nativeMapView.initMapcatMap(layerOptions);
+    }
   }
 
   //

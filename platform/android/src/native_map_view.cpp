@@ -74,6 +74,7 @@ NativeMapView::NativeMapView(jni::JNIEnv& _env,
 
     // Get native peer for file source
     mbgl::FileSource& fileSource = mbgl::android::FileSource::getDefaultFileSource(_env, jFileSource);
+    mapInit = std::make_shared<MapInit>(fileSource, "http://api.mapcat.com");
 
     // Create a renderer frontend
     rendererFrontend = std::make_unique<AndroidRendererFrontend>(mapRenderer);
@@ -177,6 +178,21 @@ void NativeMapView::resizeView(jni::JNIEnv&, int w, int h) {
     width = util::max(64, w);
     height = util::max(64, h);
     map->setSize({ static_cast<uint32_t>(width), static_cast<uint32_t>(height) });
+}
+
+void NativeMapView::initMapcatMap(jni::JNIEnv& env,
+                                  jni::jboolean cycleRoads,
+                                  jni::jboolean cycleRoutes,
+                                  jni::String accessToken)
+{
+    std::function<void(Response)> callback = [this](Response response) {
+        if (response.data) {
+            map->getStyle().loadJSON(*response.data);
+        }
+    };
+    mapInitRequest = mapInit->initVectorView(callback,
+                                             jni::Make<std::string>(env, accessToken),
+                                             LayerOptions(cycleRoads, cycleRoutes));
 }
 
 jni::String NativeMapView::getStyleUrl(jni::JNIEnv& env) {
@@ -959,6 +975,7 @@ void NativeMapView::registerNative(jni::JNIEnv& env) {
             "nativeInitialize",
             "nativeDestroy",
             METHOD(&NativeMapView::resizeView, "nativeResizeView"),
+            METHOD(&NativeMapView::initMapcatMap, "nativeInitMapcatMap"),
             METHOD(&NativeMapView::getStyleUrl, "nativeGetStyleUrl"),
             METHOD(&NativeMapView::setStyleUrl, "nativeSetStyleUrl"),
             METHOD(&NativeMapView::getStyleJson, "nativeGetStyleJson"),
