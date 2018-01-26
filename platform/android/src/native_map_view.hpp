@@ -81,6 +81,8 @@ public:
 
     void initMapcatMap(jni::JNIEnv&, jni::jboolean, jni::jboolean, jni::String);
 
+    void setLanguage(jni::JNIEnv&, jni::String);
+
     jni::String getStyleUrl(jni::JNIEnv&);
 
     void setStyleUrl(jni::JNIEnv&, jni::String);

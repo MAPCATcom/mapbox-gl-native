@@ -543,6 +543,12 @@ public class MapView extends FrameLayout {
     }
   }
 
+  public void setLanguage(String languageCode) {
+    if (isMapInitialized()) {
+      nativeMapView.setLanguage(languageCode);
+    }
+  }
+
   //
   // Rendering
   //
