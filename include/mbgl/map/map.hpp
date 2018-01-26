@@ -54,6 +54,9 @@ public:
 
     void setStyle(std::unique_ptr<style::Style>);
 
+    // Set language
+    void setLanguage(const std::string& languageCode);
+
     // Transition
     void cancelTransitions();
     void setGestureInProgress(bool);

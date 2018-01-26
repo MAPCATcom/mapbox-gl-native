@@ -13,6 +13,7 @@
 #include <mbgl/util/constants.hpp>
 #include <mbgl/util/string.hpp>
 #include <mbgl/util/exception.hpp>
+#include <mbgl/util/language_config.hpp>
 
 #include <unordered_set>
 
@@ -27,7 +28,8 @@ GeometryTileWorker::GeometryTileWorker(ActorRef<GeometryTileWorker> self_,
                                        const std::atomic<bool>& obsolete_,
                                        const MapMode mode_,
                                        const float pixelRatio_,
-                                       const bool showCollisionBoxes_)
+                                       const bool showCollisionBoxes_,
+                                       std::shared_ptr<const util::LanguageConfig> languageConfig_)
     : self(std::move(self_)),
       parent(std::move(parent_)),
       id(std::move(id_)),
@@ -35,7 +37,8 @@ GeometryTileWorker::GeometryTileWorker(ActorRef<GeometryTileWorker> self_,
       obsolete(obsolete_),
       mode(mode_),
       pixelRatio(pixelRatio_),
-      showCollisionBoxes(showCollisionBoxes_) {
+      showCollisionBoxes(showCollisionBoxes_),
+      languageConfig(languageConfig_) {
 }
 
 GeometryTileWorker::~GeometryTileWorker() = default;
@@ -328,7 +331,7 @@ void GeometryTileWorker::redoLayout() {
 
         if (leader.is<RenderSymbolLayer>()) {
             auto layout = leader.as<RenderSymbolLayer>()->createLayout(
-                parameters, group, std::move(geometryLayer), glyphDependencies, imageDependencies);
+                parameters, group, std::move(geometryLayer), glyphDependencies, imageDependencies, languageConfig);
             symbolLayoutMap.emplace(leader.getID(), std::move(layout));
             symbolLayoutsNeedPreparation = true;
         } else {

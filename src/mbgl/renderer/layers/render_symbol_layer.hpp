@@ -8,6 +8,12 @@
 
 namespace mbgl {
 
+namespace util {
+
+class LanguageConfig;
+
+} // namespace util
+
 namespace style {
 
 // {icon,text}-specific paint-property packs for use in the symbol Programs.
@@ -79,7 +85,8 @@ public:
                                                const std::vector<const RenderLayer*>&,
                                                std::unique_ptr<GeometryTileLayer>,
                                                GlyphDependencies&,
-                                               ImageDependencies&) const;
+                                               ImageDependencies&,
+                                               std::shared_ptr<const util::LanguageConfig> languageConfig) const;
 
     // Paint properties
     style::SymbolPaintProperties::Unevaluated unevaluated;

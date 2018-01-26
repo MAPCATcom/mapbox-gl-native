@@ -20,6 +20,7 @@
 #include <mbgl/math/minmax.hpp>
 #include <mbgl/math/log2.hpp>
 #include <mbgl/util/platform.hpp>
+#include <mbgl/util/language_config.hpp>
 #include <mbgl/util/logging.hpp>
 #include <mbgl/tile/geometry_tile_data.hpp>
 
@@ -41,7 +42,8 @@ SymbolLayout::SymbolLayout(const BucketParameters& parameters,
                            const std::vector<const RenderLayer*>& layers,
                            std::unique_ptr<GeometryTileLayer> sourceLayer_,
                            ImageDependencies& imageDependencies,
-                           GlyphDependencies& glyphDependencies)
+                           GlyphDependencies& glyphDependencies,
+                           std::shared_ptr<const util::LanguageConfig> languageConfig)
     : bucketName(layers.at(0)->getID()),
       sourceLayer(std::move(sourceLayer_)),
       overscaling(parameters.tileID.overscaleFactor()),
@@ -125,9 +127,15 @@ SymbolLayout::SymbolLayout(const BucketParameters& parameters,
         };
         
         if (hasText) {
-            std::string u8string = layout.evaluate<TextField>(zoom, ft);
-            if (layout.get<TextField>().isConstant()) {
-                u8string = util::replaceTokens(u8string, getValue);
+            std::string u8string;
+            bool isMultiLangField = (layout.evaluate<TextField>(zoom, ft) == "{name}");
+            if (isMultiLangField) {
+                u8string = languageConfig->getText(ft.feature->getProperties(), zoom);
+            } else {
+                u8string = layout.evaluate<TextField>(zoom, ft);
+                if (layout.get<TextField>().isConstant()) {
+                    u8string = util::replaceTokens(u8string, getValue);
+                }
             }
             
             auto textTransform = layout.evaluate<TextTransform>(zoom, ft);

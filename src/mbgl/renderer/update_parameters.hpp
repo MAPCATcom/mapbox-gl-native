@@ -8,6 +8,7 @@
 #include <mbgl/style/layer.hpp>
 #include <mbgl/util/chrono.hpp>
 #include <mbgl/util/immutable.hpp>
+#include <mbgl/util/language_config.hpp>
 
 #include <vector>
 
@@ -38,6 +39,8 @@ public:
     
     // For still image requests, render requested
     const bool stillImageRequest;
+
+    std::shared_ptr<const util::LanguageConfig> languageConfig;
 };
 
 } // namespace mbgl

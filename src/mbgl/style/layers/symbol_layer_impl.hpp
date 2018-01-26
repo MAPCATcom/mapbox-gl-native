@@ -5,6 +5,11 @@
 #include <mbgl/style/layers/symbol_layer_properties.hpp>
 
 namespace mbgl {
+
+namespace util {
+class LanguageConfig;
+} //namespace util
+
 namespace style {
 
 class SymbolLayer::Impl : public Layer::Impl {

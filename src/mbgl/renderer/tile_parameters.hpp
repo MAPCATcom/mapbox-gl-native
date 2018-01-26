@@ -4,6 +4,12 @@
 
 namespace mbgl {
 
+namespace util {
+
+class LanguageConfig;
+
+} // namespace util
+
 class TransformState;
 class Scheduler;
 class FileSource;
@@ -23,6 +29,7 @@ public:
     ImageManager& imageManager;
     GlyphManager& glyphManager;
     const uint8_t prefetchZoomDelta;
+    std::shared_ptr<const util::LanguageConfig> languageConfig;
 };
 
 } // namespace mbgl

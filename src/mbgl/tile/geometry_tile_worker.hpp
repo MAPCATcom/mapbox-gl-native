@@ -18,6 +18,12 @@ class GeometryTile;
 class GeometryTileData;
 class SymbolLayout;
 
+namespace util {
+
+class LanguageConfig;
+
+} // namespace util
+
 namespace style {
 class Layer;
 } // namespace style
@@ -31,7 +37,8 @@ public:
                        const std::atomic<bool>&,
                        const MapMode,
                        const float pixelRatio,
-                       const bool showCollisionBoxes_);
+                       const bool showCollisionBoxes_,
+                       std::shared_ptr<const util::LanguageConfig>);
     ~GeometryTileWorker();
 
     void setLayers(std::vector<Immutable<style::Layer::Impl>>, uint64_t correlationID);
@@ -87,6 +94,8 @@ private:
     
     bool showCollisionBoxes;
     bool firstLoad = true;
+
+    std::shared_ptr<const util::LanguageConfig> languageConfig;
 };
 
 } // namespace mbgl
