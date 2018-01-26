@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".MapboxApplication"
+        android:name=".MapcatApplication"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@drawable/icon"
