@@ -149,7 +149,7 @@ final class NativeMapView {
     nativeInitMapcatMap(options.cycleRoad, options.cycleRoute, Mapcat.getAccessToken());
   }
 
-  public void setLanguage(String languageCode){
+  public void setLanguage(String languageCode) {
     nativeSetLanguage(languageCode);
   }
 
