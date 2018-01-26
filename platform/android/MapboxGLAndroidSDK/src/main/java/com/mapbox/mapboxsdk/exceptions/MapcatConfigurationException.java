@@ -19,6 +19,6 @@ public class MapcatConfigurationException extends RuntimeException {
   public MapcatConfigurationException() {
     super("\nUsing MapView requires setting a valid access token. Use Mapcat.getInstance(Context context, "
       + "String accessToken) to provide one. "
-      + "\nPlease see https://http://docs.mapcat.com/#get-started-with-mapcat to learn how to create one.");
+      + "\nPlease see https://docs.mapcat.com/#get-started-with-mapcat to learn how to create one.");
   }
 }
