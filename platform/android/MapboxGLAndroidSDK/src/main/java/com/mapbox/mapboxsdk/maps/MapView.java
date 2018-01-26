@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ZoomButtonsController;
 
 import com.mapbox.mapboxsdk.R;
@@ -28,6 +29,7 @@ import com.mapbox.mapboxsdk.annotations.Annotation;
 import com.mapbox.mapboxsdk.annotations.MarkerViewManager;
 import com.mapbox.mapboxsdk.constants.MapboxConstants;
 import com.mapbox.mapboxsdk.constants.Style;
+import com.mapbox.mapboxsdk.exceptions.MapcatConfigurationException;
 import com.mapbox.mapboxsdk.maps.renderer.MapRenderer;
 import com.mapbox.mapboxsdk.maps.renderer.glsurfaceview.GLSurfaceViewMapRenderer;
 import com.mapbox.mapboxsdk.maps.renderer.textureview.TextureViewMapRenderer;
@@ -322,7 +324,7 @@ public class MapView extends FrameLayout {
     nativeMapView = new NativeMapView(this, mapRenderer);
     nativeMapView.resizeView(getMeasuredWidth(), getMeasuredHeight());
     if (layerOptions != null) {
-      nativeMapView.initMapcatMap(layerOptions);
+      initMapcatMap(layerOptions);
     }
   }
 
@@ -539,7 +541,11 @@ public class MapView extends FrameLayout {
   public void initMapcatMap(LayerOptions _layerOptions) {
     layerOptions = _layerOptions;
     if (isMapInitialized()) {
-      nativeMapView.initMapcatMap(layerOptions);
+      try {
+        nativeMapView.initMapcatMap(layerOptions);
+      } catch (MapcatConfigurationException e) {
+        Toast.makeText(getContext(), "Could not initialize mapcat map.", Toast.LENGTH_SHORT).show();
+      }
     }
   }
 

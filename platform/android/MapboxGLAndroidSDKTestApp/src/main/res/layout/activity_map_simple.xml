@@ -7,6 +7,25 @@
     android:orientation="vertical"
     tools:context=".activity.maplayout.SimpleMapActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/promptAccessToken"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/set_access_token"/>
+
+        <Button
+            android:id="@+id/promptLanguageCode"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/set_language_code"/>
+
+    </LinearLayout>
+
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@id/mapView"
         android:layout_width="match_parent"
