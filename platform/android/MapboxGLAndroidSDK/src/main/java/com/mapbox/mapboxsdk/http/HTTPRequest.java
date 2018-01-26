@@ -16,21 +16,15 @@ import java.net.NoRouteToHostException;
 import java.net.ProtocolException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.concurrent.locks.ReentrantLock;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
-import javax.security.cert.CertificateException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -47,7 +41,6 @@ import timber.log.Timber;
 import static android.util.Log.DEBUG;
 import static android.util.Log.INFO;
 import static android.util.Log.WARN;
-import static javax.net.ssl.SSLContext.*;
 
 class HTTPRequest implements Callback {
 
@@ -128,10 +121,45 @@ class HTTPRequest implements Callback {
   }
 
   private static OkHttpClient createHttpClient() {
-    OkHttpClient.Builder builder = new OkHttpClient.Builder();
-    builder = builder.dispatcher(getDispatcher());
-    builder = builder.hostnameVerifier((s, sslSession) -> true);
-    return builder.build();
+    try {
+      // Create a trust manager that does not validate certificate chains
+      final TrustManager[] trustAllCerts = new TrustManager[] {
+              new X509TrustManager() {
+                @Override
+                public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) {
+                }
+
+                @Override
+                public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) {
+                }
+
+                @Override
+                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                  return new java.security.cert.X509Certificate[]{};
+                }
+              }
+      };
+
+      // Install the all-trusting trust manager
+      final SSLContext sslContext = SSLContext.getInstance("SSL");
+      sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+      // Create an ssl socket factory with our all-trusting manager
+      final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+      OkHttpClient.Builder builder = new OkHttpClient.Builder();
+      builder.sslSocketFactory(sslSocketFactory, (X509TrustManager)trustAllCerts[0]);
+      builder.hostnameVerifier(new HostnameVerifier() {
+        @Override
+        public boolean verify(String hostname, SSLSession session) {
+          return true;
+        }
+      });
+
+      OkHttpClient okHttpClient = builder.build();
+      return okHttpClient;
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
   }
 
   public void cancel() {

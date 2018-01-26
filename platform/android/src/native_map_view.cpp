@@ -74,7 +74,7 @@ NativeMapView::NativeMapView(jni::JNIEnv& _env,
 
     // Get native peer for file source
     mbgl::FileSource& fileSource = mbgl::android::FileSource::getDefaultFileSource(_env, jFileSource);
-    mapInit = std::make_shared<MapInit>(fileSource, "http://api.mapcat.com");
+    mapInit = std::make_shared<MapInit>(fileSource);
 
     // Create a renderer frontend
     rendererFrontend = std::make_unique<AndroidRendererFrontend>(mapRenderer);
