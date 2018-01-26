@@ -94,6 +94,7 @@ public class MapView extends FrameLayout {
   private MapRenderer mapRenderer;
 
   private LayerOptions layerOptions;
+  private String languageCode = "en";
 
   @UiThread
   public MapView(@NonNull Context context) {
@@ -323,6 +324,7 @@ public class MapView extends FrameLayout {
 
     nativeMapView = new NativeMapView(this, mapRenderer);
     nativeMapView.resizeView(getMeasuredWidth(), getMeasuredHeight());
+    nativeMapView.setLanguage(languageCode);
     if (layerOptions != null) {
       initMapcatMap(layerOptions);
     }
@@ -550,8 +552,9 @@ public class MapView extends FrameLayout {
   }
 
   public void setLanguage(String languageCode) {
+    this.languageCode = languageCode;
     if (isMapInitialized()) {
-      nativeMapView.setLanguage(languageCode);
+      nativeMapView.setLanguage(this.languageCode);
     }
   }
 

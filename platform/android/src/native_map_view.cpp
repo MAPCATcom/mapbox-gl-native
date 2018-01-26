@@ -63,6 +63,7 @@ NativeMapView::NativeMapView(jni::JNIEnv& _env,
                              jni::jfloat _pixelRatio)
     : javaPeer(_obj.NewWeakGlobalRef(_env))
     , mapRenderer(MapRenderer::getNativePeer(_env, jMapRenderer))
+    , languageCode("en")
     , pixelRatio(_pixelRatio)
     , threadPool(sharedThreadPool()) {
 
@@ -188,6 +189,7 @@ void NativeMapView::initMapcatMap(jni::JNIEnv& env,
     std::function<void(Response)> callback = [this](Response response) {
         if (response.data) {
             map->getStyle().loadJSON(*response.data);
+            map->setLanguage(this->languageCode);
         }
     };
     mapInitRequest = mapInit->initVectorView(callback,
@@ -195,8 +197,9 @@ void NativeMapView::initMapcatMap(jni::JNIEnv& env,
                                              LayerOptions(cycleRoads, cycleRoutes));
 }
 
-void NativeMapView::setLanguage(jni::JNIEnv& env, jni::String languageCode) {
-    map->setLanguage(jni::Make<std::string>(env, languageCode));
+void NativeMapView::setLanguage(jni::JNIEnv& env, jni::String _languageCode) {
+    languageCode = jni::Make<std::string>(env, _languageCode);
+    map->setLanguage(languageCode);
 }
 
 jni::String NativeMapView::getStyleUrl(jni::JNIEnv& env) {

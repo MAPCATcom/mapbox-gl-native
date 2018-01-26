@@ -86,9 +86,7 @@ public class SimpleMapActivity extends AppCompatActivity {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
         String languageCode = input.getText().toString();
-        // TODO: invoke language setting from here
-        String toastText = "This will set the map language to " + languageCode;
-        Toast.makeText(SimpleMapActivity.this, toastText, Toast.LENGTH_SHORT).show(); // TODO: remove toast
+        mapView.setLanguage(languageCode);
       }
     });
     builder.show();
