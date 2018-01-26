@@ -262,6 +262,7 @@ private:
     MapRenderer& mapRenderer;
     std::shared_ptr<mbgl::MapInit> mapInit;
     std::unique_ptr<mbgl::AsyncRequest> mapInitRequest;
+    std::string languageCode;
 
     std::string styleUrl;
     std::string apiKey;
