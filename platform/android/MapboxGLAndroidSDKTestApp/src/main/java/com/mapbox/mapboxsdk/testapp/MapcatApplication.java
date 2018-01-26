@@ -2,10 +2,8 @@ package com.mapbox.mapboxsdk.testapp;
 
 import android.app.Application;
 import android.os.StrictMode;
-import android.text.TextUtils;
 
 import com.mapbox.mapboxsdk.Mapcat;
-import com.mapbox.mapboxsdk.testapp.utils.TokenUtils;
 import com.squareup.leakcanary.LeakCanary;
 
 import timber.log.Timber;
@@ -51,12 +49,7 @@ public class MapcatApplication extends Application {
       .penaltyDeath()
       .build());
 
-    String mapboxAccessToken = TokenUtils.getMapcatAccessToken(getApplicationContext());
-    if (TextUtils.isEmpty(mapboxAccessToken) || mapboxAccessToken.equals(DEFAULT_MAPCAT_ACCESS_TOKEN)) {
-      Timber.e(ACCESS_TOKEN_NOT_SET_MESSAGE);
-    }
-
-    Mapcat.getInstance(getApplicationContext(), mapboxAccessToken);
+    Mapcat.getInstance(this, DEFAULT_MAPCAT_ACCESS_TOKEN);
   }
 
   private void initializeLogger() {

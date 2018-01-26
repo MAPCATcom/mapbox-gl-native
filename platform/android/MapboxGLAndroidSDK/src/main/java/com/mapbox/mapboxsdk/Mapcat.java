@@ -70,8 +70,16 @@ public final class Mapcat {
    */
   public static String getAccessToken() {
     validateMapcat();
-    validateAccessToken();
     return INSTANCE.accessToken;
+  }
+
+  /**
+   * Set access token for this application
+   * @param value the access token to set
+   */
+  public static void setAccessToken(String value) {
+    validateMapcat();
+    INSTANCE.accessToken = value;
   }
 
   /**
