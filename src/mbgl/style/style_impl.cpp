@@ -352,7 +352,7 @@ void Style::Impl::setLanguage(const std::string& languageCode) {
     observer->onUpdate();
 }
 
-const std::shared_ptr<util::LanguageConfig> Style::Impl::getLanguageConfig() const {
+std::shared_ptr<const util::LanguageConfig> Style::Impl::getLanguageConfig() const {
     return languageConfig;
 }
 

@@ -43,7 +43,7 @@ SymbolLayout::SymbolLayout(const BucketParameters& parameters,
                            std::unique_ptr<GeometryTileLayer> sourceLayer_,
                            ImageDependencies& imageDependencies,
                            GlyphDependencies& glyphDependencies,
-                           const std::shared_ptr<util::LanguageConfig> languageConfig)
+                           std::shared_ptr<const util::LanguageConfig> languageConfig)
     : bucketName(layers.at(0)->getID()),
       sourceLayer(std::move(sourceLayer_)),
       overscaling(parameters.tileID.overscaleFactor()),

@@ -86,7 +86,7 @@ public:
                                                std::unique_ptr<GeometryTileLayer>,
                                                GlyphDependencies&,
                                                ImageDependencies&,
-                                               const std::shared_ptr<util::LanguageConfig> languageConfig) const;
+                                               std::shared_ptr<const util::LanguageConfig> languageConfig) const;
 
     // Paint properties
     style::SymbolPaintProperties::Unevaluated unevaluated;

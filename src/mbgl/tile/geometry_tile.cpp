@@ -224,7 +224,7 @@ void GeometryTile::commitFeatureIndex() {
     }
 }
 
-const std::shared_ptr<util::LanguageConfig> GeometryTile::getLanguageConfig() const {
+std::shared_ptr<const util::LanguageConfig> GeometryTile::getLanguageConfig() const {
     return languageConfig;
 }
 

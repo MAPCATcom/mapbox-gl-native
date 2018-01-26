@@ -29,7 +29,7 @@ public:
     ImageManager& imageManager;
     GlyphManager& glyphManager;
     const uint8_t prefetchZoomDelta;
-    std::shared_ptr<util::LanguageConfig> languageConfig;
+    std::shared_ptr<const util::LanguageConfig> languageConfig;
 };
 
 } // namespace mbgl

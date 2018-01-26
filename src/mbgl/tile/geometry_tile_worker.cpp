@@ -29,7 +29,7 @@ GeometryTileWorker::GeometryTileWorker(ActorRef<GeometryTileWorker> self_,
                                        const MapMode mode_,
                                        const float pixelRatio_,
                                        const bool showCollisionBoxes_,
-                                       const std::shared_ptr<util::LanguageConfig> languageConfig_)
+                                       std::shared_ptr<const util::LanguageConfig> languageConfig_)
     : self(std::move(self_)),
       parent(std::move(parent_)),
       id(std::move(id_)),

@@ -98,7 +98,7 @@ public:
     void dumpDebugLogs() const;
 
     void setLanguage(const std::string& languageCode);
-    const std::shared_ptr<util::LanguageConfig> getLanguageConfig() const;
+    std::shared_ptr<const util::LanguageConfig> getLanguageConfig() const;
 
     bool mutated = false;
     bool loaded = false;

@@ -34,7 +34,7 @@ void Style::setLanguage(const std::string& languageCode) {
     impl->setLanguage(languageCode);
 }
 
-const std::shared_ptr<util::LanguageConfig> Style::getLanguageConfig() const {
+std::shared_ptr<const util::LanguageConfig> Style::getLanguageConfig() const {
     return impl->getLanguageConfig();
 }
 

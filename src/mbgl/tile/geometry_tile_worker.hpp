@@ -38,7 +38,7 @@ public:
                        const MapMode,
                        const float pixelRatio,
                        const bool showCollisionBoxes_,
-                       const std::shared_ptr<util::LanguageConfig>);
+                       std::shared_ptr<const util::LanguageConfig>);
     ~GeometryTileWorker();
 
     void setLayers(std::vector<Immutable<style::Layer::Impl>>, uint64_t correlationID);
@@ -95,7 +95,7 @@ private:
     bool showCollisionBoxes;
     bool firstLoad = true;
 
-    const std::shared_ptr<util::LanguageConfig> languageConfig;
+    std::shared_ptr<const util::LanguageConfig> languageConfig;
 };
 
 } // namespace mbgl

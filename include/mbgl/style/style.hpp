@@ -38,7 +38,7 @@ public:
     std::string getURL() const;
 
     void setLanguage(const std::string& languageCode);
-    const std::shared_ptr<util::LanguageConfig> getLanguageConfig() const;
+    std::shared_ptr<const util::LanguageConfig> getLanguageConfig() const;
 
     // Defaults
     std::string getName() const;

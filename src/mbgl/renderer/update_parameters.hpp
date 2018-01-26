@@ -40,7 +40,7 @@ public:
     // For still image requests, render requested
     const bool stillImageRequest;
 
-    std::shared_ptr<util::LanguageConfig> languageConfig;
+    std::shared_ptr<const util::LanguageConfig> languageConfig;
 };
 
 } // namespace mbgl

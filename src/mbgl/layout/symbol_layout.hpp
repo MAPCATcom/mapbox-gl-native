@@ -38,7 +38,7 @@ public:
                  std::unique_ptr<GeometryTileLayer>,
                  ImageDependencies&,
                  GlyphDependencies&,
-                 const std::shared_ptr<util::LanguageConfig>);
+                 std::shared_ptr<const util::LanguageConfig>);
 
     void prepare(const GlyphMap&, const GlyphPositions&,
                  const ImageMap&, const ImagePositions&,

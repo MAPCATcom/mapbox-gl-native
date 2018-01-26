@@ -41,7 +41,7 @@ std::unique_ptr<SymbolLayout> RenderSymbolLayer::createLayout(const BucketParame
                                                               std::unique_ptr<GeometryTileLayer> layer,
                                                               GlyphDependencies& glyphDependencies,
                                                               ImageDependencies& imageDependencies,
-                                                              const std::shared_ptr<util::LanguageConfig> languageConfig) const {
+                                                              std::shared_ptr<const util::LanguageConfig> languageConfig) const {
     return std::make_unique<SymbolLayout>(parameters,
                                           group,
                                           std::move(layer),

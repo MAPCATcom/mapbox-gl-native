@@ -114,7 +114,7 @@ public:
     void performedFadePlacement() override;
     
     void commitFeatureIndex() override;
-    const std::shared_ptr<util::LanguageConfig> getLanguageConfig() const;
+    std::shared_ptr<const util::LanguageConfig> getLanguageConfig() const;
 protected:
     const GeometryTileData* getData() {
         return data.get();
@@ -159,7 +159,7 @@ private:
     };
 
     FadeState fadeState = FadeState::Loaded;
-    const std::shared_ptr<util::LanguageConfig> languageConfig;
+    std::shared_ptr<const util::LanguageConfig> languageConfig;
 public:
     optional<gl::Texture> glyphAtlasTexture;
     optional<gl::Texture> iconAtlasTexture;
