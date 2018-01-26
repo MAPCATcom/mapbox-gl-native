@@ -3,6 +3,7 @@ package com.mapbox.mapboxsdk.testapp.activity.maplayout;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.mapbox.mapboxsdk.maps.LayerOptions;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.testapp.R;
 
@@ -19,6 +20,7 @@ public class SimpleMapActivity extends AppCompatActivity {
     setContentView(R.layout.activity_map_simple);
 
     mapView = (MapView) findViewById(R.id.mapView);
+    mapView.initMapcatMap(new LayerOptions(true, true));
     mapView.onCreate(savedInstanceState);
   }
 

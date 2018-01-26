@@ -23,13 +23,13 @@ const std::string MAPCAT_API_URL = "https://api.mapcat.com";
 
 class MapInit {
 public:
-    MapInit(std::shared_ptr<OnlineFileSource> _fileSource,
+    MapInit(FileSource& _fileSource,
             const std::string& _apiUrl = MAPCAT_API_URL);
     std::unique_ptr<AsyncRequest> initVectorView(std::function<void(Response)> callback,
                                                  const std::string& accessToken,
                                                  const LayerOptions& layerOptions = LayerOptions());
 private:
-    std::shared_ptr<OnlineFileSource> fileSource;
+    FileSource& fileSource;
     std::string apiUrl;
 };
 

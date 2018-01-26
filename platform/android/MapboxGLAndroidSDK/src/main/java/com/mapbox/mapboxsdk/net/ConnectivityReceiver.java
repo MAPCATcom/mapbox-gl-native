@@ -10,7 +10,7 @@ import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
 
-import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.Mapcat;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -117,7 +117,7 @@ public class ConnectivityReceiver extends BroadcastReceiver {
    * @return true if connected
    */
   public boolean isConnected(Context context) {
-    Boolean connected = Mapbox.isConnected();
+    Boolean connected = Mapcat.isConnected();
     if (connected != null) {
       // Connectivity state overridden by app
       return connected;

@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import com.mapbox.mapboxsdk.LibraryLoader;
+import com.mapbox.mapboxsdk.Mapcat;
 import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.Polygon;
@@ -142,6 +143,10 @@ final class NativeMapView {
     }
 
     nativeResizeView(width, height);
+  }
+
+  public void initMapcatMap(LayerOptions options) {
+    nativeInitMapcatMap(options.cycleRoad, options.cycleRoute, Mapcat.getAccessToken());
   }
 
   public void setStyleUrl(String url) {
@@ -887,6 +892,8 @@ final class NativeMapView {
   private native void nativeDestroy();
 
   private native void nativeResizeView(int width, int height);
+
+  private native void nativeInitMapcatMap(boolean cycleRoads, boolean cycleRoutes, String accessToken);
 
   private native void nativeSetStyleUrl(String url);
 

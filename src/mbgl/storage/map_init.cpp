@@ -18,7 +18,7 @@ LayerOptions::LayerOptions(bool _cycleRoad,
 {}
 
 
-MapInit::MapInit(shared_ptr<OnlineFileSource> _fileSource,
+MapInit::MapInit(FileSource& _fileSource,
                  const string& _apiUrl):
     fileSource(_fileSource),
     apiUrl(_apiUrl)
@@ -56,7 +56,7 @@ unique_ptr<AsyncRequest> MapInit::initVectorView(function<void(Response)> callba
     string postDataString = oss.str();
 
     string url = apiUrl + "/api/mapinit/vector?api_key=" + accessToken;
-    unique_ptr<AsyncRequest> request = fileSource->request(Resource::post(url, postDataString), callback);
+    unique_ptr<AsyncRequest> request = fileSource.request(Resource::post(url, postDataString), callback);
     return request;
 }
 

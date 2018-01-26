@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.os.Environment;
 import android.support.annotation.NonNull;
-import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.Mapcat;
 import com.mapbox.mapboxsdk.constants.MapboxConstants;
 import timber.log.Timber;
 
@@ -119,7 +119,7 @@ public class FileSource {
   private long nativePtr;
 
   private FileSource(String cachePath, AssetManager assetManager) {
-    initialize(Mapbox.getAccessToken(), cachePath, assetManager);
+    initialize(Mapcat.getAccessToken(), cachePath, assetManager);
   }
 
   public native void activate();
