@@ -149,6 +149,10 @@ final class NativeMapView {
     nativeInitMapcatMap(options.cycleRoad, options.cycleRoute, Mapcat.getAccessToken());
   }
 
+  public void setLanguage(String languageCode) {
+    nativeSetLanguage(languageCode);
+  }
+
   public void setStyleUrl(String url) {
     if (isDestroyedOn("setStyleUrl")) {
       return;
@@ -894,6 +898,8 @@ final class NativeMapView {
   private native void nativeResizeView(int width, int height);
 
   private native void nativeInitMapcatMap(boolean cycleRoads, boolean cycleRoutes, String accessToken);
+
+  private native void nativeSetLanguage(String languageCode);
 
   private native void nativeSetStyleUrl(String url);
 

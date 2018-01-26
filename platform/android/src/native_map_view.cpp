@@ -195,6 +195,10 @@ void NativeMapView::initMapcatMap(jni::JNIEnv& env,
                                              LayerOptions(cycleRoads, cycleRoutes));
 }
 
+void NativeMapView::setLanguage(jni::JNIEnv& env, jni::String languageCode) {
+    map->setLanguage(jni::Make<std::string>(env, languageCode));
+}
+
 jni::String NativeMapView::getStyleUrl(jni::JNIEnv& env) {
     return jni::Make<jni::String>(env, map->getStyle().getURL());
 }
@@ -976,6 +980,7 @@ void NativeMapView::registerNative(jni::JNIEnv& env) {
             "nativeDestroy",
             METHOD(&NativeMapView::resizeView, "nativeResizeView"),
             METHOD(&NativeMapView::initMapcatMap, "nativeInitMapcatMap"),
+            METHOD(&NativeMapView::setLanguage, "nativeSetLanguage"),
             METHOD(&NativeMapView::getStyleUrl, "nativeGetStyleUrl"),
             METHOD(&NativeMapView::setStyleUrl, "nativeSetStyleUrl"),
             METHOD(&NativeMapView::getStyleJson, "nativeGetStyleJson"),
