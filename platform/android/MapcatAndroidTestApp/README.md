@@ -1,4 +1,4 @@
-# Mapbox GL Test App
+# Mapcat Android Test App
 
 ## Building
 
