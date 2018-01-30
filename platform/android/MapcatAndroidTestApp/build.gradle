@@ -5,7 +5,7 @@ android {
     buildToolsVersion androidVersions.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.mapbox.mapboxsdk.testapp"
+        applicationId "com.mapcat.mapcatsdk.testapp"
         minSdkVersion androidVersions.minSdkVersion
         targetSdkVersion androidVersions.targetSdkVersion
         versionCode 12
@@ -52,7 +52,7 @@ android {
 }
 
 dependencies {
-    implementation(project(':MapboxGLAndroidSDK'))
+    implementation(project(':MapcatAndroidSDK'))
     implementation(dependenciesList.mapboxJavaServices) {
         transitive = true
     }
