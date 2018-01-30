@@ -6,7 +6,7 @@ The aim of this project is to make visualizing of Mapcat maps possible on Androi
 ## Getting Started
 
 This guide aims to help developers in building and running the forked SDK and the Mapcat Android TestApp demo application.
-If your are interested in a pre-built version of our application, you can download it from... **TODO**
+If your are interested in a pre-built version of our application, you can download it from [here](https://cdn-static.mapcat.com/apk/MapcatAndroidTestApp/latest/MapcatAndroidTestApp.apk).
 
 #### Getting the source
 
