@@ -13,7 +13,7 @@ namespace android {
 class SymbolLayer : public Layer {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/layers/SymbolLayer"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/layers/SymbolLayer"; };
 
     static jni::Class<SymbolLayer> javaClass;
 

@@ -8,7 +8,7 @@ namespace android {
 
 class OfflineRegionError {
 public:
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/offline/OfflineRegionError"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/offline/OfflineRegionError"; };
 
     static jni::Object<OfflineRegionError> New(jni::JNIEnv&, mbgl::Response::Error);
 

@@ -16,7 +16,7 @@ namespace android {
 class CustomGeometrySource : public Source {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/sources/CustomGeometrySource"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/sources/CustomGeometrySource"; };
 
     static jni::Class<CustomGeometrySource> javaClass;
 

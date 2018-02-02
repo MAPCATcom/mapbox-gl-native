@@ -10,7 +10,7 @@ namespace android {
 
 class IntervalStops : private mbgl::util::noncopyable {
 public:
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/functions/stops/IntervalStops"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/functions/stops/IntervalStops"; };
 
     static jni::Object<IntervalStops> New(jni::JNIEnv&, jni::Array<jni::Object<Stop>>);
 

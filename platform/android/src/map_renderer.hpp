@@ -36,7 +36,7 @@ class FileSource;
 class MapRenderer : public Scheduler {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/maps/renderer/MapRenderer"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/maps/renderer/MapRenderer"; };
 
     static jni::Class<MapRenderer> javaClass;
 

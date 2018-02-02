@@ -10,7 +10,7 @@ namespace android {
 class UnknownLayer : public Layer {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/layers/UnknownLayer"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/layers/UnknownLayer"; };
 
     static jni::Class<UnknownLayer> javaClass;
 

@@ -10,7 +10,7 @@ namespace android {
 class RasterSource : public Source {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/sources/RasterSource"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/sources/RasterSource"; };
 
     static jni::Class<RasterSource> javaClass;
 

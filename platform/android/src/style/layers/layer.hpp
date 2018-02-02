@@ -14,7 +14,7 @@ namespace android {
 class Layer : private mbgl::util::noncopyable {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/layers/Layer"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/layers/Layer"; };
 
     static jni::Class<Layer> javaClass;
 

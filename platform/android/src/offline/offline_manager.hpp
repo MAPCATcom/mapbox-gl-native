@@ -18,7 +18,7 @@ public:
 
     class ListOfflineRegionsCallback {
     public:
-        static constexpr auto Name() { return "com/mapbox/mapboxsdk/offline/OfflineManager$ListOfflineRegionsCallback";}
+        static constexpr auto Name() { return "com/mapcat/mapcatsdk/offline/OfflineManager$ListOfflineRegionsCallback";}
 
         static void onError(jni::JNIEnv&, jni::Object<OfflineManager::ListOfflineRegionsCallback>, std::exception_ptr);
 
@@ -34,7 +34,7 @@ public:
 
     class CreateOfflineRegionCallback {
     public:
-        static constexpr auto Name() { return "com/mapbox/mapboxsdk/offline/OfflineManager$CreateOfflineRegionCallback"; }
+        static constexpr auto Name() { return "com/mapcat/mapcatsdk/offline/OfflineManager$CreateOfflineRegionCallback"; }
 
         static void onError(jni::JNIEnv&, jni::Object<OfflineManager::CreateOfflineRegionCallback>, std::exception_ptr);
 
@@ -48,7 +48,7 @@ public:
         static void registerNative(jni::JNIEnv&);
     };
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/offline/OfflineManager"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/offline/OfflineManager"; };
 
     static jni::Class<OfflineManager> javaClass;
 

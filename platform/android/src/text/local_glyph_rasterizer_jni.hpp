@@ -19,7 +19,7 @@ class LocalGlyphRasterizer {
 public:
     static PremultipliedImage drawGlyphBitmap(const std::string& fontFamily, const bool bold, const char16_t glyphID);
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/text/LocalGlyphRasterizer"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/text/LocalGlyphRasterizer"; };
 
     static jni::Class<LocalGlyphRasterizer> javaClass;
 

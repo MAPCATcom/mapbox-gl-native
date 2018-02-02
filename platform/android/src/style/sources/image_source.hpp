@@ -13,7 +13,7 @@ class Bitmap;
 class ImageSource : public Source {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/sources/ImageSource"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/sources/ImageSource"; };
 
     static jni::Class<ImageSource> javaClass;
 

@@ -13,7 +13,7 @@ namespace android {
 class RasterLayer : public Layer {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/layers/RasterLayer"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/layers/RasterLayer"; };
 
     static jni::Class<RasterLayer> javaClass;
 

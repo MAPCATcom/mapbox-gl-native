@@ -10,7 +10,7 @@ namespace android {
 
 class CategoricalStops : private mbgl::util::noncopyable {
 public:
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/functions/stops/CategoricalStops"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/functions/stops/CategoricalStops"; };
 
     static jni::Object<CategoricalStops> New(jni::JNIEnv&, jni::Array<jni::Object<Stop>>);
 

@@ -13,7 +13,7 @@ namespace android {
 class Marker : private mbgl::util::noncopyable {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/annotations/Marker"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/annotations/Marker"; };
 
     static jni::Class<Marker> javaClass;
 

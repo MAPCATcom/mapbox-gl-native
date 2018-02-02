@@ -44,7 +44,7 @@ class MapRenderer;
 class NativeMapView : public MapObserver {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/maps/NativeMapView"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/maps/NativeMapView"; };
 
     static jni::Class<NativeMapView> javaClass;
 

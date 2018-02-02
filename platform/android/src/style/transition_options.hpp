@@ -10,7 +10,7 @@ namespace android {
 class TransitionOptions : private mbgl::util::noncopyable {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/layers/TransitionOptions"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/layers/TransitionOptions"; };
 
     static jni::Object<TransitionOptions> fromTransitionOptions(jni::JNIEnv&, jlong duration, jlong offset);
 

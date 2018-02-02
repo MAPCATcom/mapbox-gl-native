@@ -18,7 +18,7 @@ public:
 
     using PointForFn = mbgl::MapSnapshotter::PointForFn;
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/snapshotter/MapSnapshot"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/snapshotter/MapSnapshot"; };
 
     static void registerNative(jni::JNIEnv&);
 

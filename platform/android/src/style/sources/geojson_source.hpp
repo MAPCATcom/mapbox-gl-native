@@ -13,7 +13,7 @@ namespace android {
 class GeoJSONSource : public Source {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/sources/GeoJsonSource"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/sources/GeoJsonSource"; };
 
     static jni::Class<GeoJSONSource> javaClass;
 

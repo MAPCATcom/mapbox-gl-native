@@ -14,7 +14,7 @@ class OfflineRegion {
 public:
     class OfflineRegionObserver {
     public:
-        static constexpr auto Name() { return "com/mapbox/mapboxsdk/offline/OfflineRegion$OfflineRegionObserver"; };
+        static constexpr auto Name() { return "com/mapcat/mapcatsdk/offline/OfflineRegion$OfflineRegionObserver"; };
 
         static jni::Class<OfflineRegionObserver> javaClass;
 
@@ -23,7 +23,7 @@ public:
 
     class OfflineRegionStatusCallback {
     public:
-        static constexpr auto Name() { return "com/mapbox/mapboxsdk/offline/OfflineRegion$OfflineRegionStatusCallback"; };
+        static constexpr auto Name() { return "com/mapcat/mapcatsdk/offline/OfflineRegion$OfflineRegionStatusCallback"; };
 
         static void onError(jni::JNIEnv&, jni::Object<OfflineRegionStatusCallback>, std::exception_ptr);
 
@@ -38,7 +38,7 @@ public:
 
     class OfflineRegionDeleteCallback {
     public:
-        static constexpr auto Name() { return "com/mapbox/mapboxsdk/offline/OfflineRegion$OfflineRegionDeleteCallback"; };
+        static constexpr auto Name() { return "com/mapcat/mapcatsdk/offline/OfflineRegion$OfflineRegionDeleteCallback"; };
 
         static void onError(jni::JNIEnv&, jni::Object<OfflineRegionDeleteCallback>, std::exception_ptr);
 
@@ -51,7 +51,7 @@ public:
 
     class OfflineRegionUpdateMetadataCallback {
     public:
-        static constexpr auto Name() { return "com/mapbox/mapboxsdk/offline/OfflineRegion$OfflineRegionUpdateMetadataCallback"; };
+        static constexpr auto Name() { return "com/mapcat/mapcatsdk/offline/OfflineRegion$OfflineRegionUpdateMetadataCallback"; };
 
         static void onError(jni::JNIEnv&, jni::Object<OfflineRegionUpdateMetadataCallback>, std::exception_ptr);
 
@@ -64,7 +64,7 @@ public:
         static void registerNative(jni::JNIEnv&);
     };
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/offline/OfflineRegion"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/offline/OfflineRegion"; };
 
     OfflineRegion(jni::JNIEnv&, jni::jlong, jni::Object<FileSource>);
 
