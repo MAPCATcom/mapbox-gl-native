@@ -10,7 +10,7 @@ namespace android {
 class UnknownSource : public Source {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/sources/UnknownSource"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/sources/UnknownSource"; };
 
     static jni::Class<UnknownSource> javaClass;
 

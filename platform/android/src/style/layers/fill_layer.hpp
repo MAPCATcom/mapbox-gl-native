@@ -13,7 +13,7 @@ namespace android {
 class FillLayer : public Layer {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/layers/FillLayer"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/layers/FillLayer"; };
 
     static jni::Class<FillLayer> javaClass;
 

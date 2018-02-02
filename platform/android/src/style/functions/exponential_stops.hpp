@@ -11,7 +11,7 @@ namespace android {
 
 class ExponentialStops : private mbgl::util::noncopyable {
 public:
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/functions/stops/ExponentialStops"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/functions/stops/ExponentialStops"; };
 
     static jni::Object<ExponentialStops> New(jni::JNIEnv&, jni::Object<java::lang::Float>, jni::Array<jni::Object<Stop>>);
 

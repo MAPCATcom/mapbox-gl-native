@@ -13,7 +13,7 @@ namespace android {
 class BackgroundLayer : public Layer {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/layers/BackgroundLayer"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/layers/BackgroundLayer"; };
 
     static jni::Class<BackgroundLayer> javaClass;
 

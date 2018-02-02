@@ -15,7 +15,7 @@ namespace android {
 class Source : private mbgl::util::noncopyable {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/sources/Source"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/sources/Source"; };
 
     static jni::Class<Source> javaClass;
 

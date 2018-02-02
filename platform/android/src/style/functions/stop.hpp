@@ -10,7 +10,7 @@ namespace android {
 
 class Stop : private mbgl::util::noncopyable {
 public:
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/functions/stops/Stop"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/functions/stops/Stop"; };
 
     template<class I, class O>
     static jni::Object<Stop> New(jni::JNIEnv& env, jni::Object<I> in, jni::Object<O> out) {
@@ -24,7 +24,7 @@ public:
 
     class CompositeValue : private mbgl::util::noncopyable {
     public:
-        static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/functions/stops/Stop$CompositeValue"; };
+        static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/functions/stops/Stop$CompositeValue"; };
 
         static jni::Object<Stop::CompositeValue> New(jni::JNIEnv&, jni::Object<java::lang::Number>, jni::Object<>);
 

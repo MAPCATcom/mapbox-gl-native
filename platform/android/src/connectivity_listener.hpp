@@ -10,7 +10,7 @@ namespace android {
 class ConnectivityListener : private mbgl::util::noncopyable {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/net/NativeConnectivityListener"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/net/NativeConnectivityListener"; };
 
     static jni::Class<ConnectivityListener> javaClass;
 

@@ -11,7 +11,7 @@ namespace android {
 class VectorSource : public Source {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/sources/VectorSource"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/sources/VectorSource"; };
 
     static jni::Class<VectorSource> javaClass;
 

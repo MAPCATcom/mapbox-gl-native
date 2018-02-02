@@ -13,7 +13,7 @@ namespace android {
 class CircleLayer : public Layer {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/layers/CircleLayer"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/layers/CircleLayer"; };
 
     static jni::Class<CircleLayer> javaClass;
 

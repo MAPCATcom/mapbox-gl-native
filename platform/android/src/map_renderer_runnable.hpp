@@ -20,7 +20,7 @@ namespace android {
 class MapRendererRunnable {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/maps/renderer/MapRendererRunnable"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/maps/renderer/MapRendererRunnable"; };
 
     static jni::Class<MapRendererRunnable> javaClass;
 

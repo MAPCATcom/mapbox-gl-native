@@ -21,7 +21,7 @@ class SnapshotterRendererFrontend;
 class MapSnapshotter {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/snapshotter/MapSnapshotter"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/snapshotter/MapSnapshotter"; };
 
     static jni::Class<MapSnapshotter> javaClass;
 

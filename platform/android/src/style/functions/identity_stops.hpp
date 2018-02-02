@@ -8,7 +8,7 @@ namespace android {
 
 class IdentityStops : private mbgl::util::noncopyable {
 public:
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/functions/stops/IdentityStops"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/functions/stops/IdentityStops"; };
 
     static jni::Object<IdentityStops> New(jni::JNIEnv&);
 

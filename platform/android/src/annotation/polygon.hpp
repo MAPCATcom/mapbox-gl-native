@@ -16,7 +16,7 @@ namespace android {
 class Polygon : private MultiPoint {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/annotations/Polygon"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/annotations/Polygon"; };
 
     static jni::Class<Polygon> javaClass;
 

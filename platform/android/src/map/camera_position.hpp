@@ -11,7 +11,7 @@ namespace android {
 class CameraPosition : private mbgl::util::noncopyable {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/camera/CameraPosition"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/camera/CameraPosition"; };
 
     static jni::Object<CameraPosition> New(jni::JNIEnv&, mbgl::CameraOptions);
 

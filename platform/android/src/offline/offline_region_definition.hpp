@@ -8,7 +8,7 @@ namespace android {
 
 class OfflineRegionDefinition {
 public:
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/offline/OfflineRegionDefinition"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/offline/OfflineRegionDefinition"; };
 
     static jni::Class<OfflineRegionDefinition> javaClass;
 
@@ -18,7 +18,7 @@ public:
 
 class OfflineTilePyramidRegionDefinition: public OfflineRegionDefinition {
 public:
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/offline/OfflineTilePyramidRegionDefinition"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/offline/OfflineTilePyramidRegionDefinition"; };
 
     static jni::Object<OfflineTilePyramidRegionDefinition> New(jni::JNIEnv&, mbgl::OfflineTilePyramidRegionDefinition);
 

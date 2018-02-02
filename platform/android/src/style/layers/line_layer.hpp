@@ -13,7 +13,7 @@ namespace android {
 class LineLayer : public Layer {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/layers/LineLayer"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/layers/LineLayer"; };
 
     static jni::Class<LineLayer> javaClass;
 

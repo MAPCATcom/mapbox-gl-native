@@ -19,7 +19,7 @@ using namespace style;
 class Light : private mbgl::util::noncopyable {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/style/light/Light"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/style/light/Light"; };
 
     static jni::Class<Light> javaClass;
 

@@ -19,10 +19,10 @@ namespace android {
 class FileSource {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/storage/FileSource"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/storage/FileSource"; };
 
     struct ResourceTransformCallback {
-        static constexpr auto Name() { return "com/mapbox/mapboxsdk/storage/FileSource$ResourceTransformCallback"; }
+        static constexpr auto Name() { return "com/mapcat/mapcatsdk/storage/FileSource$ResourceTransformCallback"; }
 
         static std::string onURL(jni::JNIEnv&, jni::Object<FileSource::ResourceTransformCallback>, int, std::string);
 

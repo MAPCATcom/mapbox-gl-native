@@ -16,7 +16,7 @@ namespace android {
 class Polyline : private MultiPoint {
 public:
 
-    static constexpr auto Name() { return "com/mapbox/mapboxsdk/annotations/Polyline"; };
+    static constexpr auto Name() { return "com/mapcat/mapcatsdk/annotations/Polyline"; };
 
     static jni::Class<Polyline> javaClass;
 
