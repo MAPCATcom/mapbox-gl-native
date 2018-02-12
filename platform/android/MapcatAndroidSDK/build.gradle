@@ -100,7 +100,7 @@ android {
     }
 
     // avoid naming conflicts, force usage of prefix
-    resourcePrefix 'mapbox_'
+    resourcePrefix 'mapcat_'
 
     sourceSets {
         // limit amount of exposed library resources
