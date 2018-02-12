@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion androidVersions.compileSdkVersion
+    compileSdkVersion 25
     buildToolsVersion androidVersions.buildToolsVersion
 
     defaultConfig {
@@ -52,20 +52,17 @@ android {
 }
 
 dependencies {
-    implementation(project(':MapcatAndroidSDK'))
+    implementation project(':MapcatAndroidSDK')
     implementation(dependenciesList.mapboxJavaServices) {
         transitive = true
     }
-
     implementation dependenciesList.supportAppcompatV7
     implementation dependenciesList.supportRecyclerView
     implementation dependenciesList.supportDesign
-
     implementation dependenciesList.lost
     implementation dependenciesList.timber
     debugImplementation dependenciesList.leakCanaryDebug
     releaseImplementation dependenciesList.leakCanaryRelease
-
     androidTestImplementation dependenciesList.supportAnnotations
     androidTestImplementation dependenciesList.testRunner
     androidTestImplementation dependenciesList.testRules

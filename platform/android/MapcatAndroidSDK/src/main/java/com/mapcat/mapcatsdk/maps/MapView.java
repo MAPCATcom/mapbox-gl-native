@@ -82,7 +82,6 @@ public class MapView extends FrameLayout {
   private MyLocationView myLocationView;
   private CompassView compassView;
   private PointF focalPoint;
-  private ImageView attrView;
   private ImageView logoView;
 
   private MapGestureDetector mapGestureDetector;
@@ -128,14 +127,13 @@ public class MapView extends FrameLayout {
     mapboxMapOptions = options;
 
     // inflate view
-    View view = LayoutInflater.from(context).inflate(com.mapcat.mapcatsdk.R.layout.mapbox_mapview_internal, this);
+    View view = LayoutInflater.from(context).inflate(com.mapcat.mapcatsdk.R.layout.mapcat_mapview_internal, this);
     compassView = (CompassView) view.findViewById(com.mapcat.mapcatsdk.R.id.compassView);
     myLocationView = (MyLocationView) view.findViewById(com.mapcat.mapcatsdk.R.id.userLocationView);
-    attrView = (ImageView) view.findViewById(com.mapcat.mapcatsdk.R.id.attributionView);
     logoView = (ImageView) view.findViewById(com.mapcat.mapcatsdk.R.id.logoView);
 
     // add accessibility support
-    setContentDescription(context.getString(com.mapcat.mapcatsdk.R.string.mapbox_mapActionDescription));
+    setContentDescription(context.getString(com.mapcat.mapcatsdk.R.string.mapcat_mapActionDescription));
     setWillNotDraw(false);
 
     getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -170,7 +168,7 @@ public class MapView extends FrameLayout {
 
     // setup components for MapboxMap creation
     Projection proj = new Projection(nativeMapView);
-    UiSettings uiSettings = new UiSettings(proj, focalPointInvalidator, compassView, attrView, logoView);
+    UiSettings uiSettings = new UiSettings(proj, focalPointInvalidator, compassView, logoView);
     TrackingSettings trackingSettings = new TrackingSettings(myLocationView, uiSettings, focalPointInvalidator,
       zoomInvalidator);
     MyLocationViewSettings myLocationViewSettings = new MyLocationViewSettings(myLocationView, proj,
@@ -209,7 +207,6 @@ public class MapView extends FrameLayout {
     compassView.setOnClickListener(createCompassClickListener(cameraChangeDispatcher));
     // inject widgets with MapboxMap
     myLocationView.setMapboxMap(mapboxMap);
-    attrView.setOnClickListener(new AttributionClickListener(context, mapboxMap));
 
     // Ensure this view is interactable
     setClickable(true);
@@ -1100,30 +1097,6 @@ public class MapView extends FrameLayout {
 
     void clearOnMapReadyCallbacks() {
       onMapReadyCallbackList.clear();
-    }
-  }
-
-  /**
-   * Click event hook for providing a custom attribution dialog manager.
-   */
-  private static class AttributionClickListener implements OnClickListener {
-
-    private final AttributionDialogManager defaultDialogManager;
-    private UiSettings uiSettings;
-
-    private AttributionClickListener(Context context, MapboxMap mapboxMap) {
-      this.defaultDialogManager = new AttributionDialogManager(context, mapboxMap);
-      this.uiSettings = mapboxMap.getUiSettings();
-    }
-
-    @Override
-    public void onClick(View v) {
-      AttributionDialogManager customDialogManager = uiSettings.getAttributionDialogManager();
-      if (customDialogManager != null) {
-        uiSettings.getAttributionDialogManager().onClick(v);
-      } else {
-        defaultDialogManager.onClick(v);
-      }
     }
   }
 }

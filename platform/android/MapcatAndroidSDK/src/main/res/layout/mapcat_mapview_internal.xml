@@ -19,31 +19,20 @@
         android:id="@+id/userLocationView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="@string/mapbox_myLocationViewContentDescription"/>
+        android:contentDescription="@string/mapcat_myLocationViewContentDescription"/>
 
     <com.mapcat.mapcatsdk.maps.widgets.CompassView
         android:id="@+id/compassView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/mapbox_compassContentDescription"/>
+        android:contentDescription="@string/mapcat_compassContentDescription"/>
 
     <ImageView
-        android:visibility="gone"
         android:id="@+id/logoView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@null"
-        android:src="@drawable/mapbox_logo_icon"/>
-
-    <ImageView
-        android:visibility="gone"
-        android:id="@+id/attributionView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:clickable="true"
-        android:focusable="true"
-        android:contentDescription="@string/mapbox_attributionsIconContentDescription"
-        android:src="@drawable/mapbox_info_bg_selector"/>
+        android:src="@drawable/mapcat_logo_icon"
+        android:visibility="gone" />
 
 </merge>

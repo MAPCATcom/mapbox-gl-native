@@ -647,7 +647,7 @@ public class MarkerViewManager implements MapView.OnMapChangedListener {
       ViewHolder viewHolder;
       if (convertView == null) {
         viewHolder = new ViewHolder();
-        convertView = inflater.inflate(com.mapcat.mapcatsdk.R.layout.mapbox_view_image_marker, parent, false);
+        convertView = inflater.inflate(com.mapcat.mapcatsdk.R.layout.mapcat_view_image_marker, parent, false);
         viewHolder.imageView = (ImageView) convertView.findViewById(com.mapcat.mapcatsdk.R.id.image);
         convertView.setTag(viewHolder);
       } else {
