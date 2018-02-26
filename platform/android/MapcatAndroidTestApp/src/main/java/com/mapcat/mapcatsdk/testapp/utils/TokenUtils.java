@@ -8,30 +8,34 @@ import com.mapcat.mapcatsdk.Mapcat;
 
 public class TokenUtils {
 
+  public TokenUtils() {
+    super();
+  }
+
   /**
    * <p>
-   * Returns the Mapcat access token set in the app resources.
+   * Returns the Mapcat Visualization API key set in the app resources.
    * </p>
-   * It will first search for a token in the Mapcat object. If not found it
-   * will then attempt to load the access token from the
+   * It will first search for an API key in the Mapcat object. If not found it
+   * will then attempt to load the Visualization API key from the
    * {@code res/values/dev.xml} development file.
    *
    * @param context The {@link Context} of the {@link android.app.Activity} or {@link android.app.Fragment}.
-   * @return The Mapcat access token or null if not found.
+   * @return The Mapcat Visualization API key or null if not found.
    */
-  public static String getMapcatAccessToken(@NonNull Context context) {
+  public static String getMapcatVisualizationApiKey(@NonNull Context context) {
     try {
       // Read out AndroidManifest
-      String token = Mapcat.getAccessToken();
-      if (token == null || token.isEmpty()) {
+      String key = Mapcat.getVisualizationApiKey();
+      if (key == null || key.isEmpty()) {
         throw new IllegalArgumentException();
       }
-      return token;
+      return key;
     } catch (Exception exception) {
       // Use fallback on string resource, used for development
-      int tokenResId = context.getResources()
-        .getIdentifier("mapcat_access_token", "string", context.getPackageName());
-      return tokenResId != 0 ? context.getString(tokenResId) : null;
+      int keyResId = context.getResources()
+        .getIdentifier("mapcat_visualization_api_key", "string", context.getPackageName());
+      return keyResId != 0 ? context.getString(keyResId) : null;
     }
   }
 }

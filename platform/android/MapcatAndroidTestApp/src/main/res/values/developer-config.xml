@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="mapcat_access_token">YOUR_MAPCAT_ACCESS_TOKEN_GOES_HERE</string>
+    <string name="mapcat_visualization_api_key">YOUR_MAPCAT_VISUALIZATION_API_KEY_GOES_HERE</string>
 </resources>

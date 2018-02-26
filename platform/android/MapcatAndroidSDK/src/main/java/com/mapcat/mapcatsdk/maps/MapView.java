@@ -24,7 +24,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ZoomButtonsController;
 
-import com.mapcat.mapcatsdk.Mapbox;
+import com.mapcat.mapcatsdk.Mapcat;
 import com.mapcat.mapcatsdk.annotations.Annotation;
 import com.mapcat.mapcatsdk.annotations.MarkerViewManager;
 import com.mapcat.mapcatsdk.constants.MapboxConstants;
@@ -63,8 +63,8 @@ import static com.mapcat.mapcatsdk.maps.widgets.CompassView.TIME_WAIT_IDLE;
  * and style the features of the map to fit your application's use case.
  * </p>
  * <p>
- * Use of {@code MapView} requires a Mapbox API access token.
- * Obtain an access token on the <a href="https://www.mapbox.com/studio/account/tokens/">Mapbox account page</a>.
+ * Use of {@code MapView} requires a Mapcat Visualization API key.
+ * Obtain a Visualization API key on the <a href="https://www.mapcat.com/">Mapcat webpage</a>.
  * </p>
  * <strong>Warning:</strong> Please note that you are responsible for getting permission to use the map data,
  * and for ensuring your use adheres to the relevant terms of use.
@@ -278,11 +278,11 @@ public class MapView extends FrameLayout {
    * You must call this method from the parent's Activity#onCreate(Bundle)} or
    * Fragment#onViewCreated(View, Bundle).
    * </p>
-   * You must set a valid access token with {@link Mapbox#getInstance(Context, String)}
+   * You must set a valid Visualization API key with {@link Mapcat#getInstance(Context, String)}
    * before you call this method or an exception will be thrown.
    *
    * @param savedInstanceState Pass in the parent's savedInstanceState.
-   * @see Mapbox#getInstance(Context, String)
+   * @see Mapcat#getInstance(Context, String)
    */
   @UiThread
   public void onCreate(@Nullable Bundle savedInstanceState) {

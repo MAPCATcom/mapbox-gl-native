@@ -7,6 +7,7 @@
 #include <mbgl/util/platform.hpp>
 #include <mbgl/util/default_thread_pool.hpp>
 #include <mbgl/storage/default_file_source.hpp>
+#include <mbgl/storage/map_init.hpp>
 #include <mbgl/style/style.hpp>
 #include <mbgl/renderer/renderer.hpp>
 
@@ -35,6 +36,34 @@ void quit_handler(int) {
 }
 
 int main(int argc, char *argv[]) {
+
+    mbgl::util::RunLoop runLoop;
+    mbgl::OnlineFileSource fileSource;
+    mbgl::MapInit mapInit(fileSource);
+    std::atomic<bool> isDone = {false};
+    std::string styleSheet;
+    std::unique_ptr<mbgl::AsyncRequest> request = mapInit.initVectorView([&isDone, &styleSheet](mbgl::Response response) {
+        if (response.error) {
+            isDone = true;
+            throw std::runtime_error("szar: " + response.error->message);
+        } else {
+            if (response.data) {
+                styleSheet = *response.data;
+                std::string toFind = "cdn-vt.mapcat.com/vector/mb_compose/{z}/{x}/{y}.pbf?base&ocean&relief&landcover";
+                styleSheet.replace(styleSheet.find(toFind), toFind.length(), "vt-dev.mapcat.com/vector/mb_compose/{z}/{x}/{y}.pbf?base&relief&landcover");
+                std::cout << "Style sheet: " << std::endl << styleSheet << std::endl;
+            } else {
+                std::cout << "Nincs data." << std::endl;
+            }
+            isDone = true;
+        }
+    }, "jM9oGlsfWxOOYYF0kvuq2UbYl3XrVuUzJmwfnB6M", mbgl::LayerOptions(false, false));
+
+    while (!isDone) {
+        runLoop.runOnce();
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+
     args::ArgumentParser argumentParser("Mapbox GL GLFW example");
     args::HelpFlag helpFlag(argumentParser, "help", "Display this help menu", {'h', "help"});
 
@@ -91,7 +120,7 @@ int main(int argc, char *argv[]) {
     GLFWView backend(fullscreen, benchmark);
     view = &backend;
 
-    mbgl::DefaultFileSource fileSource("/tmp/mbgl-cache.db", ".");
+    //mbgl::DefaultFileSource fileSource("/tmp/mbgl-cache.db", ".");
     if (!settings.online) {
         fileSource.setOnlineStatus(false);
         mbgl::Log::Warning(mbgl::Event::Setup, "Application is offline. Press `O` to toggle online status.");
@@ -102,7 +131,8 @@ int main(int argc, char *argv[]) {
     if (token == nullptr) {
         mbgl::Log::Warning(mbgl::Event::Setup, "no access token set. mapbox.com tiles won't work.");
     } else {
-        fileSource.setAccessToken(std::string(token));
+        //fileSource.setAccessToken(std::string(token));
+        fileSource.setAccessToken("pk.eyJ1IjoidGhld2l0aCIsImEiOiJjamNycXVxZXYyZDJjMzNwZ3RmOGw2NDlrIn0.7YRTQYHlpKIFdSi0dOzVPQ");
     }
 
     mbgl::ThreadPool threadPool(4);
@@ -141,15 +171,15 @@ int main(int argc, char *argv[]) {
     });
 
     view->setPauseResumeCallback([&fileSource] () {
-        static bool isPaused = false;
+//        static bool isPaused = false;
 
-        if (isPaused) {
-            fileSource.resume();
-        } else {
-            fileSource.pause();
-        }
+//        if (isPaused) {
+//            fileSource.resume();
+//        } else {
+//            fileSource.pause();
+//        }
 
-        isPaused = !isPaused;
+//        isPaused = !isPaused;
     });
 
     // Load style
@@ -165,7 +195,8 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    map.getStyle().loadURL(style);
+    map.getStyle().loadJSON(styleSheet);
+    //map.getStyle().loadURL(style);
 
     view->run();
 

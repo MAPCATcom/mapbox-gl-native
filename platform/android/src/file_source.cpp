@@ -14,7 +14,7 @@ namespace android {
 // FileSource //
 
 FileSource::FileSource(jni::JNIEnv& _env,
-                       jni::String accessToken,
+                       jni::String apiKey,
                        jni::String _cachePath,
                        jni::Object<AssetManager> assetManager) {
     // Create a core default file source
@@ -22,19 +22,19 @@ FileSource::FileSource(jni::JNIEnv& _env,
         jni::Make<std::string>(_env, _cachePath) + "/mbgl-offline.db",
         std::make_unique<AssetManagerFileSource>(_env, assetManager));
 
-    // Set access token
-    fileSource->setAccessToken(jni::Make<std::string>(_env, accessToken));
+    // Set Visualization API key
+    fileSource->setAccessToken(jni::Make<std::string>(_env, apiKey));
 }
 
 FileSource::~FileSource() {
 }
 
-jni::String FileSource::getAccessToken(jni::JNIEnv& env) {
+jni::String FileSource::getVisualizationApiKey(jni::JNIEnv& env) {
     return jni::Make<jni::String>(env, fileSource->getAccessToken());
 }
 
-void FileSource::setAccessToken(jni::JNIEnv& env, jni::String token) {
-    fileSource->setAccessToken(jni::Make<std::string>(env, token));
+void FileSource::setVisualizationApiKey(jni::JNIEnv& env, jni::String key) {
+    fileSource->setAccessToken(jni::Make<std::string>(env, key));
 }
 
 void FileSource::setAPIBaseUrl(jni::JNIEnv& env, jni::String url) {
@@ -107,8 +107,8 @@ void FileSource::registerNative(jni::JNIEnv& env) {
         std::make_unique<FileSource, JNIEnv&, jni::String, jni::String, jni::Object<AssetManager>>,
         "initialize",
         "finalize",
-        METHOD(&FileSource::getAccessToken, "getAccessToken"),
-        METHOD(&FileSource::setAccessToken, "setAccessToken"),
+        METHOD(&FileSource::getVisualizationApiKey, "getVisualizationApiKey"),
+        METHOD(&FileSource::setVisualizationApiKey, "setVisualizationApiKey"),
         METHOD(&FileSource::setAPIBaseUrl, "setApiBaseUrl"),
         METHOD(&FileSource::setResourceTransform, "setResourceTransform"),
         METHOD(&FileSource::resume, "activate"),

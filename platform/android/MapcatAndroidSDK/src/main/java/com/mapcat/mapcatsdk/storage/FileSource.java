@@ -119,16 +119,16 @@ public class FileSource {
   private long nativePtr;
 
   private FileSource(String cachePath, AssetManager assetManager) {
-    initialize(Mapcat.getAccessToken(), cachePath, assetManager);
+    initialize(Mapcat.getVisualizationApiKey(), cachePath, assetManager);
   }
 
   public native void activate();
 
   public native void deactivate();
 
-  public native void setAccessToken(@NonNull String accessToken);
+  public native void setVisualizationApiKey(@NonNull String apiKey);
 
-  public native String getAccessToken();
+  public native String getVisualizationApiKey();
 
   public native void setApiBaseUrl(String baseUrl);
 
@@ -142,7 +142,7 @@ public class FileSource {
    */
   public native void setResourceTransform(final ResourceTransformCallback callback);
 
-  private native void initialize(String accessToken, String cachePath, AssetManager assetManager);
+  private native void initialize(String apiKey, String cachePath, AssetManager assetManager);
 
   @Override
   protected native void finalize() throws Throwable;

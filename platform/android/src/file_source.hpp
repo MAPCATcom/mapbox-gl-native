@@ -33,9 +33,9 @@ public:
 
     ~FileSource();
 
-    jni::String getAccessToken(jni::JNIEnv&);
+    jni::String getVisualizationApiKey(jni::JNIEnv&);
 
-    void setAccessToken(jni::JNIEnv&, jni::String);
+    void setVisualizationApiKey(jni::JNIEnv&, jni::String);
 
     void setAPIBaseUrl(jni::JNIEnv&, jni::String);
 

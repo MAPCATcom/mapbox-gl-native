@@ -19,7 +19,7 @@ import com.mapbox.services.android.telemetry.location.LocationEngineProvider;
  * The entry point to initialize the Mapcat Android SDK.
  * <p>
  * Obtain a reference by calling {@link #getInstance(Context, String)}. Usually this class is configured in
- * Application#onCreate() and is responsible for the active access token, application context, and
+ * Application#onCreate() and is responsible for the active Visualization API key, application context, and
  * connectivity state.
  * </p>
  */
@@ -29,27 +29,27 @@ public final class Mapcat {
   @SuppressLint("StaticFieldLeak")
   private static Mapcat INSTANCE;
   private Context context;
-  private String accessToken;
+  private String visualizationApiKey;
   private Boolean connected;
   private LocationEngine locationEngine;
 
   /**
    * Get an instance of Mapcat.
    * <p>
-   * This class manages the active access token, application context, and connectivity state.
+   * This class manages the active Visualization API key, application context, and connectivity state.
    * </p>
    *
    * @param context     Android context which holds or is an application context
-   * @param accessToken Mapcat access token
+   * @param visualizationApiKey Mapcat Visualization API key
    * @return the single instance of Mapcat
    */
   @UiThread
-  public static synchronized Mapcat getInstance(@NonNull Context context, @NonNull String accessToken) {
+  public static synchronized Mapcat getInstance(@NonNull Context context, @NonNull String visualizationApiKey) {
     if (INSTANCE == null) {
       Context appContext = context.getApplicationContext();
       LocationEngineProvider locationEngineProvider = new LocationEngineProvider(context);
       LocationEngine locationEngine = locationEngineProvider.obtainBestLocationEngineAvailable();
-      INSTANCE = new Mapcat(appContext, accessToken, locationEngine);
+      INSTANCE = new Mapcat(appContext, visualizationApiKey, locationEngine);
       locationEngine.setPriority(LocationEnginePriority.NO_POWER);
 
       ConnectivityReceiver.instance(appContext);
@@ -57,29 +57,29 @@ public final class Mapcat {
     return INSTANCE;
   }
 
-  Mapcat(@NonNull Context context, @NonNull String accessToken, LocationEngine locationEngine) {
+  Mapcat(@NonNull Context context, @NonNull String visualizationApiKey, LocationEngine locationEngine) {
     this.context = context;
-    this.accessToken = accessToken;
+    this.visualizationApiKey = visualizationApiKey;
     this.locationEngine = locationEngine;
   }
 
   /**
-   * Access token for this application.
+   * Visualization API key for this application.
    *
-   * @return Mapcat access token
+   * @return Mapcat Visualization API key
    */
-  public static String getAccessToken() {
+  public static String getVisualizationApiKey() {
     validateMapcat();
-    return INSTANCE.accessToken;
+    return INSTANCE.visualizationApiKey;
   }
 
   /**
-   * Set access token for this application
-   * @param value the access token to set
+   * Set Visualization API key for this application
+   * @param value the Visualization API key to set
    */
-  public static void setAccessToken(String value) {
+  public static void setVisualizationApiKey(String value) {
     validateMapcat();
-    INSTANCE.accessToken = value;
+    INSTANCE.visualizationApiKey = value;
   }
 
   /**
@@ -92,13 +92,13 @@ public final class Mapcat {
   }
 
   /**
-   * Runtime validation of access token.
+   * Runtime validation of Visualization API key.
    *
-   * @throws MapcatConfigurationException exception thrown when not using a valid accessToken
+   * @throws MapcatConfigurationException exception thrown when not using a valid visualizationApiKey
    */
-  private static void validateAccessToken() throws MapcatConfigurationException {
-    String accessToken = INSTANCE.accessToken;
-    if (TextUtils.isEmpty(accessToken)) {
+  private static void validateVisualizationApiKey() throws MapcatConfigurationException {
+    String key = INSTANCE.visualizationApiKey;
+    if (TextUtils.isEmpty(key)) {
       throw new MapcatConfigurationException();
     }
   }

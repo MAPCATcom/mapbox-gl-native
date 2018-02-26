@@ -22,7 +22,7 @@ public class SimpleMapActivity extends AppCompatActivity {
 
   private MapView mapView;
 
-  private String mapcatAccessToken;
+  private String mapcatVisualizationApiKey;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +32,13 @@ public class SimpleMapActivity extends AppCompatActivity {
     mapView = (MapView) findViewById(R.id.mapView);
     mapView.onCreate(savedInstanceState);
 
-    promptAccessToken();
+    promptVisualizationApiKey();
 
-    Button promptAccessTokenButton = (Button) findViewById(R.id.promptAccessToken);
-    promptAccessTokenButton.setOnClickListener(new View.OnClickListener() {
+    Button promptVisualizationApiKeyButton = (Button) findViewById(R.id.promptVisualizationApiKey);
+    promptVisualizationApiKeyButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        promptAccessToken();
+        promptVisualizationApiKey();
       }
     });
 
@@ -51,23 +51,23 @@ public class SimpleMapActivity extends AppCompatActivity {
     });
   }
 
-  private void promptAccessToken() {
+  private void promptVisualizationApiKey() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Your MAPCAT access token");
+    builder.setTitle("Your MAPCAT Visualization API key");
     final EditText input = new EditText(this);
     input.setInputType(InputType.TYPE_CLASS_TEXT);
     builder.setView(input);
     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
-        mapcatAccessToken = input.getText().toString();
+        mapcatVisualizationApiKey = input.getText().toString();
         initMap();
       }
     });
     builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() { // TODO: remove this button
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
-        mapcatAccessToken = TokenUtils.getMapcatAccessToken(getApplicationContext());
+        mapcatVisualizationApiKey = TokenUtils.getMapcatVisualizationApiKey(getApplicationContext());
         initMap();
       }
     });
@@ -92,7 +92,7 @@ public class SimpleMapActivity extends AppCompatActivity {
   }
 
   private void initMap() {
-    Mapcat.setAccessToken(mapcatAccessToken);
+    Mapcat.setVisualizationApiKey(mapcatVisualizationApiKey);
     mapView.initMapcatMap(new LayerOptions(true, true));
   }
 

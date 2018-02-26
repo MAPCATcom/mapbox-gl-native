@@ -146,7 +146,7 @@ final class NativeMapView {
   }
 
   public void initMapcatMap(LayerOptions options) {
-    nativeInitMapcatMap(options.cycleRoad, options.cycleRoute, Mapcat.getAccessToken());
+    nativeInitMapcatMap(options.cycleRoad, options.cycleRoute, Mapcat.getVisualizationApiKey());
   }
 
   public void setLanguage(String languageCode) {
