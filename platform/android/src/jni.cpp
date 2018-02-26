@@ -35,11 +35,6 @@
 #include "map_renderer.hpp"
 #include "map_renderer_runnable.hpp"
 #include "native_map_view.hpp"
-#include "offline/offline_manager.hpp"
-#include "offline/offline_region.hpp"
-#include "offline/offline_region_definition.hpp"
-#include "offline/offline_region_error.hpp"
-#include "offline/offline_region_status.hpp"
 #include "style/transition_options.hpp"
 #include "style/functions/categorical_stops.hpp"
 #include "style/functions/exponential_stops.hpp"
@@ -177,14 +172,6 @@ void registerNatives(JavaVM *vm) {
 
     // Connectivity
     ConnectivityListener::registerNative(env);
-
-    // Offline
-    OfflineManager::registerNative(env);
-    OfflineRegion::registerNative(env);
-    OfflineRegionDefinition::registerNative(env);
-    OfflineTilePyramidRegionDefinition::registerNative(env);
-    OfflineRegionError::registerNative(env);
-    OfflineRegionStatus::registerNative(env);
 
     // Snapshotter
     MapSnapshotter::registerNative(env);

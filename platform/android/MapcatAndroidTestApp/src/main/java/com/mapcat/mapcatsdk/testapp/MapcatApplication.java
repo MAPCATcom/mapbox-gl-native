@@ -18,9 +18,9 @@ import static timber.log.Timber.DebugTree;
  */
 public class MapcatApplication extends Application {
 
-  private static final String DEFAULT_MAPCAT_ACCESS_TOKEN = "YOUR_MAPCAT_ACCESS_TOKEN_GOES_HERE";
-  private static final String ACCESS_TOKEN_NOT_SET_MESSAGE = "In order to run the Test App you need to set a valid "
-    + "access token. During development, you can set the MAPCAT_ACCESS_TOKEN environment variable for the SDK to "
+  private static final String DEFAULT_MAPCAT_VISUALIZATION_API_KEY = "YOUR_MAPCAT_VISUALIZATION_API_KEY_GOES_HERE";
+  private static final String VISUALIZATION_API_KEY_NOT_SET_MESSAGE = "In order to run the Test App you need to set a valid "
+    + "Visualization API key. During development, you can set the MAPCAT_VISUALIZATION_API_KEY environment variable for the SDK to "
     + "automatically include it in the Test App. Otherwise, you can manually include it in the "
     + "res/values/developer-config.xml file in the MapboxGLAndroidSDKTestApp folder.";
 
@@ -49,7 +49,7 @@ public class MapcatApplication extends Application {
       .penaltyDeath()
       .build());
 
-    Mapcat.getInstance(this, DEFAULT_MAPCAT_ACCESS_TOKEN);
+    Mapcat.getInstance(this, DEFAULT_MAPCAT_VISUALIZATION_API_KEY);
   }
 
   private void initializeLogger() {

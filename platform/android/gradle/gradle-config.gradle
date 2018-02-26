@@ -2,22 +2,22 @@
 // Configuration file for gradle build execution.
 //
 
-task accessToken {
+task apiKey {
     def tokenFile = new File("${projectDir}/src/main/res/values/developer-config.xml")
     if (!tokenFile.exists()) {
-        String mapcatAccessToken = "$System.env.MAPCAT_ACCESS_TOKEN"
+        String mapcatAccessToken = "$System.env.MAPCAT_VISUALIZATION_API_KEY"
         if (mapcatAccessToken == "null") {
-            System.out.println("You should set the MAPCAT_ACCESS_TOKEN environment variable.")
-            mapcatAccessToken = "YOUR_MAPCAT_ACCESS_TOKEN_GOES_HERE"
+            System.out.println("You should set the MAPCAT_VISUALIZATION_API_KEY environment variable.")
+            mapcatVisualizationApiKey = "YOUR_MAPCAT_VISUALIZATION_API_KEY_GOES_HERE"
         }
         String tokenFileContents = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                 "<resources>\n" +
-                "    <string name=\"mapcat_access_token\">" + mapcatAccessToken + "</string>\n" +
+                "    <string name=\"mapcat_visualization_api_key\">" + mapcatVisualizationApiKey + "</string>\n" +
                 "</resources>"
         tokenFile.write(tokenFileContents)
     }
 }
 
 gradle.projectsEvaluated {
-    preBuild.dependsOn('accessToken')
+    preBuild.dependsOn('apiKey')
 }

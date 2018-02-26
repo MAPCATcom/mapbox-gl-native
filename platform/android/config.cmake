@@ -275,18 +275,6 @@ add_library(mbgl-android STATIC
     platform/android/src/annotation/polyline.cpp
     platform/android/src/annotation/polyline.hpp
 
-    # Offline
-    platform/android/src/offline/offline_manager.cpp
-    platform/android/src/offline/offline_manager.hpp
-    platform/android/src/offline/offline_region.cpp
-    platform/android/src/offline/offline_region.hpp
-    platform/android/src/offline/offline_region_definition.cpp
-    platform/android/src/offline/offline_region_definition.hpp
-    platform/android/src/offline/offline_region_error.cpp
-    platform/android/src/offline/offline_region_error.hpp
-    platform/android/src/offline/offline_region_status.cpp
-    platform/android/src/offline/offline_region_status.hpp
-
     # Snapshots (SDK)
     platform/android/src/snapshotter/map_snapshotter.cpp
     platform/android/src/snapshotter/map_snapshotter.hpp

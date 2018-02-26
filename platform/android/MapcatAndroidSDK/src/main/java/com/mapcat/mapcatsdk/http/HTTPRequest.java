@@ -107,7 +107,7 @@ class HTTPRequest implements Callback {
         builder = builder.addHeader("If-Modified-Since", modified);
       }
       if (httpUrl.isHttps()) {
-        builder = builder.addHeader("X-Api-Key", Mapcat.getAccessToken());
+        builder = builder.addHeader("X-Api-Key", Mapcat.getVisualizationApiKey());
       }
       if (!postData.isEmpty()) {
         builder = builder.post(RequestBody.create(MediaType.parse("application/json"), postData));
