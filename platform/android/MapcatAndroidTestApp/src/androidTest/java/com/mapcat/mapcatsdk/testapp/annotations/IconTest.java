@@ -53,7 +53,7 @@ public class IconTest extends BaseActivityTest {
 
   @Test
   public void testAddDifferentIconMarker() throws Exception {
-    Icon icon = IconFactory.getInstance(rule.getActivity()).fromResource(com.mapcat.mapcatsdk.testapp.R.drawable.mapbox_logo_icon);
+    Icon icon = IconFactory.getInstance(rule.getActivity()).fromResource(com.mapcat.mapcatsdk.testapp.R.drawable.mapcat_logo_icon);
     getMapboxMap().addMarker(new MarkerOptions().icon(icon).position(new LatLng()));
     getMapboxMap().addMarker(new MarkerOptions().position(new LatLng(1, 1)));
     assertEquals(iconMap.size(), 2);
@@ -65,7 +65,7 @@ public class IconTest extends BaseActivityTest {
   public void testAddRemoveIconMarker() throws Exception {
     MapboxMap mapboxMap = getMapboxMap();
 
-    Icon icon = IconFactory.getInstance(rule.getActivity()).fromResource(com.mapcat.mapcatsdk.testapp.R.drawable.mapbox_logo_icon);
+    Icon icon = IconFactory.getInstance(rule.getActivity()).fromResource(com.mapcat.mapcatsdk.testapp.R.drawable.mapcat_logo_icon);
     Marker marker = mapboxMap.addMarker(new MarkerOptions().icon(icon).position(new LatLng()));
     mapboxMap.addMarker(new MarkerOptions().position(new LatLng(1, 1)));
     assertEquals(iconMap.size(), 2);
@@ -103,7 +103,7 @@ public class IconTest extends BaseActivityTest {
 
     // add 4 unique icon markers
     mapboxMap.addMarker(new MarkerOptions()
-      .icon(iconFactory.fromResource(com.mapcat.mapcatsdk.testapp.R.drawable.mapbox_logo_icon))
+      .icon(iconFactory.fromResource(com.mapcat.mapcatsdk.testapp.R.drawable.mapcat_logo_icon))
       .position(new LatLng(3, 1))
     );
     mapboxMap.addMarker(new MarkerOptions()

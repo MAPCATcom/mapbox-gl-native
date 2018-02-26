@@ -390,7 +390,7 @@ class AnnotationManager {
   }
 
   private ShapeAnnotationHit getShapeAnnotationHitFromTap(PointF tapPoint) {
-    float touchTargetSide = Mapcat.getApplicationContext().getResources().getDimension(com.mapcat.mapcatsdk.R.dimen.mapbox_eight_dp);
+    float touchTargetSide = Mapcat.getApplicationContext().getResources().getDimension(com.mapcat.mapcatsdk.R.dimen.mapcat_eight_dp);
     RectF tapRect = new RectF(
       tapPoint.x - touchTargetSide,
       tapPoint.y - touchTargetSide,

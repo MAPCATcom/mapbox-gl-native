@@ -63,7 +63,7 @@ public class MapFragmentUtils {
       options.myLocationForegroundDrawables(foregroundDrawable, foregroundBearingDrawable);
     }
     if (options.getMyLocationBackgroundDrawable() == null) {
-      options.myLocationBackgroundDrawable(ContextCompat.getDrawable(context, com.mapcat.mapcatsdk.R.drawable.mapbox_mylocation_bg_shape));
+      options.myLocationBackgroundDrawable(ContextCompat.getDrawable(context, com.mapcat.mapcatsdk.R.drawable.mapcat_mylocation_bg_shape));
     }
     return options;
   }

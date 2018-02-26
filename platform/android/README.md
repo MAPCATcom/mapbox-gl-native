@@ -57,7 +57,7 @@ If you are using Arch Linux, install [ncurses5-compat-libs](https://aur.archlinu
 
 ##### Setting Mapcat Access Token
 
-_The test application (used for development purposes) uses Mapcat vector tiles, which require a Mapcat account and API access token. Get a free access token at [pro.mapcat.com/planpricing/](https://pro.mapcat.com/planpricing/)._
+_The test application (used for development purposes) uses Mapcat vector tiles, which require a Mapcat account and API access token. Get a free access token at [www.mapcat.com/planpricing/](https://www.mapcat.com/planpricing/)._
 
 The test application asks for your Mapcat access token upon startup.
 

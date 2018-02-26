@@ -195,12 +195,12 @@ public final class CameraPosition implements Parcelable {
     public Builder(TypedArray typedArray) {
       super();
       if (typedArray != null) {
-        this.bearing = typedArray.getFloat(com.mapcat.mapcatsdk.R.styleable.mapbox_MapView_mapbox_cameraBearing, 0.0f);
-        double lat = typedArray.getFloat(com.mapcat.mapcatsdk.R.styleable.mapbox_MapView_mapbox_cameraTargetLat, 0.0f);
-        double lng = typedArray.getFloat(com.mapcat.mapcatsdk.R.styleable.mapbox_MapView_mapbox_cameraTargetLng, 0.0f);
+        this.bearing = typedArray.getFloat(com.mapcat.mapcatsdk.R.styleable.mapcat_MapView_mapcat_cameraBearing, 0.0f);
+        double lat = typedArray.getFloat(com.mapcat.mapcatsdk.R.styleable.mapcat_MapView_mapcat_cameraTargetLat, 0.0f);
+        double lng = typedArray.getFloat(com.mapcat.mapcatsdk.R.styleable.mapcat_MapView_mapcat_cameraTargetLng, 0.0f);
         this.target = new LatLng(lat, lng);
-        this.tilt = typedArray.getFloat(com.mapcat.mapcatsdk.R.styleable.mapbox_MapView_mapbox_cameraTilt, 0.0f);
-        this.zoom = typedArray.getFloat(com.mapcat.mapcatsdk.R.styleable.mapbox_MapView_mapbox_cameraZoom, 0.0f);
+        this.tilt = typedArray.getFloat(com.mapcat.mapcatsdk.R.styleable.mapcat_MapView_mapcat_cameraTilt, 0.0f);
+        this.zoom = typedArray.getFloat(com.mapcat.mapcatsdk.R.styleable.mapcat_MapView_mapcat_cameraZoom, 0.0f);
       }
     }
 

@@ -38,7 +38,7 @@ public class ColorUtils {
       theme.resolveAttribute(id, typedValue, true);
       return typedValue.data;
     } catch (Exception exception) {
-      return getColorCompat(context, R.color.mapbox_blue);
+      return getColorCompat(context, R.color.mapcat_blue);
     }
   }
 
@@ -57,7 +57,7 @@ public class ColorUtils {
       theme.resolveAttribute(id, typedValue, true);
       return typedValue.data;
     } catch (Exception exception) {
-      return getColorCompat(context, R.color.mapbox_blue);
+      return getColorCompat(context, R.color.mapcat_blue);
     }
   }
 
@@ -76,7 +76,7 @@ public class ColorUtils {
       theme.resolveAttribute(id, typedValue, true);
       return typedValue.data;
     } catch (Exception exception) {
-      return getColorCompat(context, R.color.mapbox_gray);
+      return getColorCompat(context, R.color.mapcat_gray);
     }
   }
 

@@ -343,7 +343,7 @@ public class MapSnapshotter {
   }
 
   private TextView createTextView(MapSnapshot mapSnapshot, boolean shortText, float scale) {
-    int textColor = ResourcesCompat.getColor(context.getResources(), com.mapcat.mapcatsdk.R.color.mapbox_gray_dark, context.getTheme());
+    int textColor = ResourcesCompat.getColor(context.getResources(), com.mapcat.mapcatsdk.R.color.mapcat_gray_dark, context.getTheme());
     int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
     int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
     TextView textView = new TextView(context);
@@ -354,7 +354,7 @@ public class MapSnapshotter {
     textView.setSingleLine(true);
     textView.setTextSize(10 * scale);
     textView.setTextColor(textColor);
-    textView.setBackgroundResource(com.mapcat.mapcatsdk.R.drawable.mapbox_rounded_corner);
+    textView.setBackgroundResource(com.mapcat.mapcatsdk.R.drawable.mapcat_rounded_corner);
     textView.setText(Html.fromHtml(createAttributionString(mapSnapshot, shortText)));
     textView.measure(widthMeasureSpec, heightMeasureSpec);
     textView.layout(0, 0, textView.getMeasuredWidth(), textView.getMeasuredHeight());
@@ -385,13 +385,13 @@ public class MapSnapshotter {
    * @return the scaled large logo
    */
   private Logo createScaledLogo(@NonNull Bitmap snapshot) {
-    Bitmap logo = BitmapFactory.decodeResource(context.getResources(), com.mapcat.mapcatsdk.R.drawable.mapbox_logo_icon, null);
+    Bitmap logo = BitmapFactory.decodeResource(context.getResources(), com.mapcat.mapcatsdk.R.drawable.mapcat_logo_icon, null);
     float scale = calculateLogoScale(snapshot, logo);
     Matrix matrix = new Matrix();
     matrix.postScale(scale, scale);
-    Bitmap helmet = BitmapFactory.decodeResource(context.getResources(), com.mapcat.mapcatsdk.R.drawable.mapbox_logo_helmet, null);
+    Bitmap cat = BitmapFactory.decodeResource(context.getResources(), com.mapcat.mapcatsdk.R.drawable.mapcat_logo_cat, null);
     Bitmap large = Bitmap.createBitmap(logo, 0, 0, logo.getWidth(), logo.getHeight(), matrix, true);
-    Bitmap small = Bitmap.createBitmap(helmet, 0, 0, helmet.getWidth(), helmet.getHeight(), matrix, true);
+    Bitmap small = Bitmap.createBitmap(cat, 0, 0, cat.getWidth(), cat.getHeight(), matrix, true);
     return new Logo(large, small, scale);
   }
 
