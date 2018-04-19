@@ -8,17 +8,20 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.mapcat.mapcatsdk.Mapcat;
 import com.mapcat.mapcatsdk.maps.LayerOptions;
 import com.mapcat.mapcatsdk.maps.MapView;
+import com.mapcat.mapcatsdk.maps.MapViewInitHandler;
+import com.mapcat.mapcatsdk.maps.MapViewInitListener;
 import com.mapcat.mapcatsdk.testapp.R;
 import com.mapcat.mapcatsdk.testapp.utils.TokenUtils;
 
 /**
  * Test activity showcasing a simple MapView without any MapboxMap interaction.
  */
-public class SimpleMapActivity extends AppCompatActivity {
+public class SimpleMapActivity extends AppCompatActivity implements MapViewInitListener {
 
   private MapView mapView;
 
@@ -31,6 +34,8 @@ public class SimpleMapActivity extends AppCompatActivity {
 
     mapView = (MapView) findViewById(R.id.mapView);
     mapView.onCreate(savedInstanceState);
+
+    MapViewInitHandler.registerListener(this);
 
     promptVisualizationApiKey();
 
@@ -130,6 +135,7 @@ public class SimpleMapActivity extends AppCompatActivity {
   protected void onDestroy() {
     super.onDestroy();
     mapView.onDestroy();
+    MapViewInitHandler.unregisterListener(this);
   }
 
   @Override
@@ -137,4 +143,17 @@ public class SimpleMapActivity extends AppCompatActivity {
     super.onSaveInstanceState(outState);
     mapView.onSaveInstanceState(outState);
   }
+
+  @Override
+  public void onMapViewInitError(final String error) {
+    runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        Toast.makeText(getApplicationContext(), "Can't initialize Mapcat mapview with the given Visualization API key. Error: " + error, Toast.LENGTH_SHORT).show();
+      }
+    });
+  }
+
+  @Override
+  public void onMapViewInitSuccess() { }
 }
