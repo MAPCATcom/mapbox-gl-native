@@ -184,7 +184,8 @@ void NativeMapView::resizeView(jni::JNIEnv&, int w, int h) {
 void NativeMapView::initMapcatMap(jni::JNIEnv& env,
                                   jni::jboolean cycleRoads,
                                   jni::jboolean cycleRoutes,
-                                  jni::String visualizationApiKey)
+                                  jni::String visualizationApiKey,
+                                  jni::String styleId)
 {
     jclass cl = env.FindClass("com/mapcat/mapcatsdk/maps/MapViewInitHandler");
     jobject handlerGlobalRef = env.NewGlobalRef(cl);
@@ -209,7 +210,8 @@ void NativeMapView::initMapcatMap(jni::JNIEnv& env,
 
     mapInitRequest = mapInit->initVectorView(callback,
                                              jni::Make<std::string>(env, visualizationApiKey),
-                                             LayerOptions(cycleRoads, cycleRoutes));
+                                             LayerOptions(cycleRoads, cycleRoutes),
+                                             jni::Make<std::string>(env, styleId));
 }
 
 void NativeMapView::setLanguage(jni::JNIEnv& env, jni::String _languageCode) {

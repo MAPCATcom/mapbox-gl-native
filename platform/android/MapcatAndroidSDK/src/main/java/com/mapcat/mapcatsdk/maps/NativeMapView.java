@@ -145,8 +145,8 @@ final class NativeMapView {
     nativeResizeView(width, height);
   }
 
-  public void initMapcatMap(LayerOptions options) {
-    nativeInitMapcatMap(options.cycleRoad, options.cycleRoute, Mapcat.getVisualizationApiKey());
+  public void initMapcatMap(LayerOptions options, String styleId) {
+    nativeInitMapcatMap(options.cycleRoad, options.cycleRoute, Mapcat.getVisualizationApiKey(), styleId);
   }
 
   public void setLanguage(String languageCode) {
@@ -897,7 +897,10 @@ final class NativeMapView {
 
   private native void nativeResizeView(int width, int height);
 
-  private native void nativeInitMapcatMap(boolean cycleRoads, boolean cycleRoutes, String accessToken);
+  private native void nativeInitMapcatMap(boolean cycleRoads,
+                                          boolean cycleRoutes,
+                                          String accessToken,
+                                          String styleId);
 
   private native void nativeSetLanguage(String languageCode);
 

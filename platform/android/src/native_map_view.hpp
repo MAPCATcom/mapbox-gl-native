@@ -79,7 +79,7 @@ public:
 
     void resizeView(jni::JNIEnv&, int, int);
 
-    void initMapcatMap(jni::JNIEnv&, jni::jboolean, jni::jboolean, jni::String);
+    void initMapcatMap(jni::JNIEnv&, jni::jboolean, jni::jboolean, jni::String, jni::String);
 
     void setLanguage(jni::JNIEnv&, jni::String);
 

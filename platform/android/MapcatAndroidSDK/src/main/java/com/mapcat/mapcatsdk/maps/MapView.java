@@ -538,10 +538,14 @@ public class MapView extends FrameLayout {
   }
 
   public void initMapcatMap(LayerOptions _layerOptions) {
+    initMapcatMap(_layerOptions, "");
+  }
+
+  public void initMapcatMap(LayerOptions _layerOptions, String styleId) {
     layerOptions = _layerOptions;
     if (isMapInitialized()) {
       try {
-        nativeMapView.initMapcatMap(layerOptions);
+        nativeMapView.initMapcatMap(layerOptions, styleId);
       } catch (MapcatConfigurationException e) {
         Toast.makeText(getContext(), "Could not initialize mapcat map.", Toast.LENGTH_SHORT).show();
       }
