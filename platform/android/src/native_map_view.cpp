@@ -199,8 +199,8 @@ void NativeMapView::initMapcatMap(jni::JNIEnv& env,
         if (response.error) {
             jmethodID onError = cbEnv->GetStaticMethodID((jclass)handlerGlobalRef, "onError", "(Ljava/lang/String;)V");
             cbEnv->CallStaticVoidMethod((jclass)handlerGlobalRef, onError, jni::Make<jni::String>(*(cbEnv), response.error->message));
-            cbEnv->DeleteGlobalRef(handlerGlobalRef);
         }
+        cbEnv->DeleteGlobalRef(handlerGlobalRef);
         if (response.data) {
             map->getStyle().loadJSON(*response.data);
             map->setLanguage(this->languageCode);
