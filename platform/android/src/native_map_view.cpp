@@ -184,7 +184,8 @@ void NativeMapView::resizeView(jni::JNIEnv&, int w, int h) {
 void NativeMapView::initMapcatMap(jni::JNIEnv& env,
                                   jni::jboolean cycleRoads,
                                   jni::jboolean cycleRoutes,
-                                  jni::String accessToken)
+                                  jni::String accessToken,
+                                  jni::String styleId)
 {
     std::function<void(Response)> callback = [this](Response response) {
         if (response.data) {
@@ -194,7 +195,8 @@ void NativeMapView::initMapcatMap(jni::JNIEnv& env,
     };
     mapInitRequest = mapInit->initVectorView(callback,
                                              jni::Make<std::string>(env, accessToken),
-                                             LayerOptions(cycleRoads, cycleRoutes));
+                                             LayerOptions(cycleRoads, cycleRoutes),
+                                             jni::Make<std::string>(env, styleId));
 }
 
 void NativeMapView::setLanguage(jni::JNIEnv& env, jni::String _languageCode) {

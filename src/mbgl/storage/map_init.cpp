@@ -26,7 +26,8 @@ MapInit::MapInit(FileSource& _fileSource,
 
 unique_ptr<AsyncRequest> MapInit::initVectorView(function<void(Response)> callback,
                                                  const string& accessToken,
-                                                 const LayerOptions& layerOptions)
+                                                 const LayerOptions& layerOptions,
+                                                 const string& styleId)
 {
     rapidjson::Document postData;
 
@@ -47,7 +48,11 @@ unique_ptr<AsyncRequest> MapInit::initVectorView(function<void(Response)> callba
 
     postData.SetObject();
     postData.AddMember("layers", sources, postData.GetAllocator());
-    postData.AddMember("type", 1, postData.GetAllocator());
+    if (styleId.empty()) {
+        postData.AddMember("type", "mapbox", postData.GetAllocator());
+    } else {
+        postData.AddMember("type", styleId, postData.GetAllocator());
+    }
 
     ostringstream oss;
     rapidjson::OStreamWrapper osw(oss);
