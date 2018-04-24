@@ -184,17 +184,32 @@ void NativeMapView::resizeView(jni::JNIEnv&, int w, int h) {
 void NativeMapView::initMapcatMap(jni::JNIEnv& env,
                                   jni::jboolean cycleRoads,
                                   jni::jboolean cycleRoutes,
-                                  jni::String accessToken,
+                                  jni::String visualizationApiKey,
                                   jni::String styleId)
 {
-    std::function<void(Response)> callback = [this](Response response) {
+    jclass cl = env.FindClass("com/mapcat/mapcatsdk/maps/MapViewInitHandler");
+    jobject handlerGlobalRef = env.NewGlobalRef(cl);
+    std::function<void(Response)> callback = [this, handlerGlobalRef](Response response) {
+        JNIEnv* cbEnv;
+        JavaVMAttachArgs args;
+        args.version = JNI_VERSION_1_6;
+        args.name = NULL;
+        args.group = NULL;
+        vm->AttachCurrentThread((JNIEnv**)&cbEnv, &args);
+
+        if (response.error) {
+            jmethodID onError = cbEnv->GetStaticMethodID((jclass)handlerGlobalRef, "onError", "(Ljava/lang/String;)V");
+            cbEnv->CallStaticVoidMethod((jclass)handlerGlobalRef, onError, jni::Make<jni::String>(*(cbEnv), response.error->message));
+        }
+        cbEnv->DeleteGlobalRef(handlerGlobalRef);
         if (response.data) {
             map->getStyle().loadJSON(*response.data);
             map->setLanguage(this->languageCode);
         }
     };
+
     mapInitRequest = mapInit->initVectorView(callback,
-                                             jni::Make<std::string>(env, accessToken),
+                                             jni::Make<std::string>(env, visualizationApiKey),
                                              LayerOptions(cycleRoads, cycleRoutes),
                                              jni::Make<std::string>(env, styleId));
 }
