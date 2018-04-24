@@ -49,7 +49,7 @@ unique_ptr<AsyncRequest> MapInit::initVectorView(function<void(Response)> callba
     postData.SetObject();
     postData.AddMember("layers", sources, postData.GetAllocator());
     if (styleId.empty()) {
-        postData.AddMember("type", 1, postData.GetAllocator());
+        postData.AddMember("type", "mapbox", postData.GetAllocator());
     } else {
         postData.AddMember("type", styleId, postData.GetAllocator());
     }
