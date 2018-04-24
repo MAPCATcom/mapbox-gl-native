@@ -27,7 +27,8 @@ public:
             const std::string& _apiUrl = MAPCAT_API_URL);
     std::unique_ptr<AsyncRequest> initVectorView(std::function<void(Response)> callback,
                                                  const std::string& accessToken,
-                                                 const LayerOptions& layerOptions = LayerOptions());
+                                                 const LayerOptions& layerOptions = LayerOptions(),
+                                                 const std::string& styleId = "");
 private:
     FileSource& fileSource;
     std::string apiUrl;
