@@ -93,6 +93,7 @@ public class MapView extends FrameLayout {
   private MapRenderer mapRenderer;
 
   private LayerOptions layerOptions;
+  private String styleId = "";
   private String languageCode = "en";
 
   @UiThread
@@ -323,7 +324,7 @@ public class MapView extends FrameLayout {
     nativeMapView.resizeView(getMeasuredWidth(), getMeasuredHeight());
     nativeMapView.setLanguage(languageCode);
     if (layerOptions != null) {
-      initMapcatMap(layerOptions);
+      initMapcatMapWithStyleId(layerOptions, styleId);
     }
   }
 
@@ -538,11 +539,12 @@ public class MapView extends FrameLayout {
   }
 
   public void initMapcatMap(LayerOptions _layerOptions) {
-    initMapcatMap(_layerOptions, "");
+    initMapcatMapWithStyleId(_layerOptions, "");
   }
 
-  public void initMapcatMap(LayerOptions _layerOptions, String styleId) {
+  public void initMapcatMapWithStyleId(LayerOptions _layerOptions, String _styleId) {
     layerOptions = _layerOptions;
+    styleId = _styleId;
     if (isMapInitialized()) {
       try {
         nativeMapView.initMapcatMap(layerOptions, styleId);
