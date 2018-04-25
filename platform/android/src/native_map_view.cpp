@@ -203,10 +203,13 @@ void NativeMapView::initMapcatMap(jni::JNIEnv& env,
         }
         cbEnv->DeleteGlobalRef(handlerGlobalRef);
         if (response.data) {
+            mbgl::Log::Debug(mbgl::Event::JNI, "Map init response: %s", response.data->c_str());
             map->getStyle().loadJSON(*response.data);
             map->setLanguage(this->languageCode);
         }
     };
+
+    mbgl::Log::Debug(mbgl::Event::JNI, "Map init style id: %s", jni::Make<std::string>(env, styleId).c_str());
 
     mapInitRequest = mapInit->initVectorView(callback,
                                              jni::Make<std::string>(env, visualizationApiKey),
