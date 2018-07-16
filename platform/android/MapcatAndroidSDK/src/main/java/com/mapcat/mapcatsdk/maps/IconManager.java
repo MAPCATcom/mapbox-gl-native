@@ -3,6 +3,7 @@ package com.mapcat.mapcatsdk.maps;
 import android.graphics.Bitmap;
 
 import com.mapcat.mapcatsdk.Mapbox;
+import com.mapcat.mapcatsdk.Mapcat;
 import com.mapcat.mapcatsdk.annotations.Icon;
 import com.mapcat.mapcatsdk.annotations.IconFactory;
 import com.mapcat.mapcatsdk.annotations.Marker;
@@ -70,7 +71,7 @@ class IconManager {
   }
 
   private Icon loadDefaultIconForMarker(Marker marker) {
-    Icon icon = IconFactory.getInstance(Mapbox.getApplicationContext()).defaultMarker();
+    Icon icon = IconFactory.getInstance(Mapcat.getApplicationContext()).defaultMarker();
     Bitmap bitmap = icon.getBitmap();
     updateHighestIconSize(bitmap.getWidth(), bitmap.getHeight() / 2);
     marker.setIcon(icon);

@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mapcat.mapcatsdk.Mapbox;
+import com.mapcat.mapcatsdk.Mapcat;
 import com.mapcat.mapcatsdk.camera.CameraPosition;
 import com.mapcat.mapcatsdk.camera.CameraUpdateFactory;
 import com.mapcat.mapcatsdk.constants.MyBearingTracking;
@@ -531,7 +532,7 @@ public class MyLocationView extends View {
     if (enableGps) {
       if (locationEngine == null) {
         if (!isCustomLocationEngine) {
-          locationEngine = Mapbox.getLocationEngine();
+          locationEngine = Mapcat.getLocationEngine();
         } else {
           return;
         }

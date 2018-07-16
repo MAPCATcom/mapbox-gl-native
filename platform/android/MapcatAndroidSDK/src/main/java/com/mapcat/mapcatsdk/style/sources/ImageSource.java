@@ -11,6 +11,7 @@ import android.support.annotation.UiThread;
 import android.support.v4.content.ContextCompat;
 
 import com.mapcat.mapcatsdk.Mapbox;
+import com.mapcat.mapcatsdk.Mapcat;
 import com.mapcat.mapcatsdk.geometry.LatLngQuad;
 
 import java.net.URL;
@@ -106,7 +107,7 @@ public class ImageSource extends Source {
    * @param resourceId The resource ID of a Bitmap image
    */
   public void setImage(@DrawableRes int resourceId) throws IllegalArgumentException {
-    Context context = Mapbox.getApplicationContext();
+    Context context = Mapcat.getApplicationContext();
     Drawable drawable = ContextCompat.getDrawable(context, resourceId);
     if (drawable instanceof BitmapDrawable) {
       BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
