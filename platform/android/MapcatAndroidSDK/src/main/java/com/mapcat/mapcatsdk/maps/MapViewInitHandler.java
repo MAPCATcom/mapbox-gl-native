@@ -27,7 +27,7 @@ public class MapViewInitHandler {
             listeners.get(i).onMapViewInitError(error);
         }
     }
-    public static void onSucces() {
+    public static void onSuccess() {
         for (int i = 0; i < listeners.size(); ++i) {
             listeners.get(i).onMapViewInitSuccess();
         }

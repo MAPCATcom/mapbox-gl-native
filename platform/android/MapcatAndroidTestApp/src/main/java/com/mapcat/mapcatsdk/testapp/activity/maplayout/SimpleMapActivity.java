@@ -11,10 +11,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mapcat.mapcatsdk.Mapcat;
+import com.mapcat.mapcatsdk.annotations.MarkerOptions;
+import com.mapcat.mapcatsdk.camera.CameraPosition;
+import com.mapcat.mapcatsdk.camera.CameraUpdateFactory;
+import com.mapcat.mapcatsdk.geometry.LatLng;
 import com.mapcat.mapcatsdk.maps.LayerOptions;
 import com.mapcat.mapcatsdk.maps.MapView;
 import com.mapcat.mapcatsdk.maps.MapViewInitHandler;
 import com.mapcat.mapcatsdk.maps.MapViewInitListener;
+import com.mapcat.mapcatsdk.maps.MapboxMap;
+import com.mapcat.mapcatsdk.maps.OnMapReadyCallback;
 import com.mapcat.mapcatsdk.testapp.R;
 import com.mapcat.mapcatsdk.testapp.utils.TokenUtils;
 
@@ -155,5 +161,26 @@ public class SimpleMapActivity extends AppCompatActivity implements MapViewInitL
   }
 
   @Override
-  public void onMapViewInitSuccess() { }
+  public void onMapViewInitSuccess() {
+    runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        mapView.getMapAsync(new OnMapReadyCallback() {
+          @Override
+          public void onMapReady(MapboxMap mapboxMap) {
+            mapboxMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(11.586863170412954,48.13930284413624))
+                    .title("Cucc")
+                    .snippet("Illinois")
+            );
+            CameraPosition position = new CameraPosition.Builder()
+                    .target(new LatLng(47.111, 19.569))
+                    .zoom(5)
+                    .build();
+            mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(position), 7000);
+          }
+        });
+      }
+    });
+  }
 }

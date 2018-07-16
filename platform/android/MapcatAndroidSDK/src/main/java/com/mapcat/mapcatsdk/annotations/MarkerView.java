@@ -4,6 +4,7 @@ import android.support.annotation.FloatRange;
 import android.support.annotation.Nullable;
 
 import com.mapcat.mapcatsdk.Mapbox;
+import com.mapcat.mapcatsdk.Mapcat;
 import com.mapcat.mapcatsdk.constants.MapboxConstants;
 import com.mapcat.mapcatsdk.geometry.LatLng;
 import com.mapcat.mapcatsdk.maps.MapboxMap;
@@ -367,7 +368,7 @@ public class MarkerView extends Marker {
   @Override
   public Icon getIcon() {
     if (markerViewIcon == null) {
-      setIcon(IconFactory.getInstance(Mapbox.getApplicationContext()).defaultMarkerView());
+      setIcon(IconFactory.getInstance(Mapcat.getApplicationContext()).defaultMarkerView());
     }
     return markerViewIcon;
   }
