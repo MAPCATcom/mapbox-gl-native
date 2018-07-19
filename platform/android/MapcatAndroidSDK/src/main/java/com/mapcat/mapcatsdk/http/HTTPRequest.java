@@ -46,7 +46,7 @@ class HTTPRequest implements Callback {
 
   private static OkHttpClient mClient = createHttpClient();
   private static boolean logEnabled = true;
-  private static boolean logRequestUrl = false;
+  private static boolean logRequestUrl = true;
 
   private String USER_AGENT_STRING = null;
 
@@ -179,7 +179,7 @@ class HTTPRequest implements Callback {
   }
 
   @Override
-  public void onResponse(Call call, Response response) throws IOException {
+  public void onResponse(Call call, Response response) throws ClassCastException {
 
     if (logEnabled) {
       if (response.isSuccessful()) {
@@ -191,9 +191,15 @@ class HTTPRequest implements Callback {
       }
     }
 
-    byte[] body;
+    byte[] body = new byte[0];
     try {
       body = response.body().bytes();
+    } catch (ClassCastException ccException) {
+      if (Build.VERSION.SDK_INT == 26) {
+        Timber.e("[HTTP] Swallowed ClassCastException", ccException);
+      } else {
+        throw ccException;
+      }
     } catch (IOException ioException) {
       onFailure(call, ioException);
       // throw ioException;
