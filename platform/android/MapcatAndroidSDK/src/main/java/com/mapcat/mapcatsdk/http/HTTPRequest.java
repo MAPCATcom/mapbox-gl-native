@@ -195,11 +195,7 @@ class HTTPRequest implements Callback {
     try {
       body = response.body().bytes();
     } catch (ClassCastException ccException) {
-      if (Build.VERSION.SDK_INT == 26) {
-        Timber.e("[HTTP] Swallowed ClassCastException", ccException);
-      } else {
-        throw ccException;
-      }
+      Timber.e("[HTTP] Swallowed ClassCastException", ccException);
     } catch (IOException ioException) {
       onFailure(call, ioException);
       // throw ioException;
