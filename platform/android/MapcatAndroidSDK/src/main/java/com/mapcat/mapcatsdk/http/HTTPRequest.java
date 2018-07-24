@@ -179,7 +179,7 @@ class HTTPRequest implements Callback {
   }
 
   @Override
-  public void onResponse(Call call, Response response) throws ClassCastException {
+  public void onResponse(Call call, Response response) throws IOException {
 
     if (logEnabled) {
       if (response.isSuccessful()) {
@@ -195,7 +195,7 @@ class HTTPRequest implements Callback {
     try {
       body = response.body().bytes();
     } catch (ClassCastException ccException) {
-      Timber.e("[HTTP] Swallowed ClassCastException", ccException);
+      onFailure(call, new IOException("Workaround for framework bug on O", ccException));
     } catch (IOException ioException) {
       onFailure(call, ioException);
       // throw ioException;
