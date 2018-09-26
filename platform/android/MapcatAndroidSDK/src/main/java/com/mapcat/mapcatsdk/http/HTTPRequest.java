@@ -195,10 +195,14 @@ class HTTPRequest implements Callback {
     try {
       body = response.body().bytes();
     } catch (ClassCastException ccException) {
-      onFailure(call, new IOException("Workaround for framework bug on O", ccException));
+      onFailure(call, new IOException("Workaround for framework bug on OkHttp3", ccException));
+      return;
     } catch (IOException ioException) {
       onFailure(call, ioException);
       // throw ioException;
+      return;
+    } catch (NullPointerException npException) {
+      onFailure(call, new IOException("NPE", npException));
       return;
     } finally {
       response.body().close();

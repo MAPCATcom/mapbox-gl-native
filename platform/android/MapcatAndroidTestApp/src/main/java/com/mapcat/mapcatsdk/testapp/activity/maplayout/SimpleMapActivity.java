@@ -168,6 +168,11 @@ public class SimpleMapActivity extends AppCompatActivity implements MapViewInitL
         mapView.getMapAsync(new OnMapReadyCallback() {
           @Override
           public void onMapReady(MapboxMap mapboxMap) {
+            if (mapboxMap != null) {
+              // TODO
+              onMapViewInitError("onMapReady: mapboxMap is null");
+              return;
+            }
             mapboxMap.addMarker(new MarkerOptions()
                     .position(new LatLng(11.586863170412954,48.13930284413624))
                     .title("Cucc")
