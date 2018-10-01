@@ -46,7 +46,7 @@ class HTTPRequest implements Callback {
 
   private static OkHttpClient mClient = createHttpClient();
   private static boolean logEnabled = true;
-  private static boolean logRequestUrl = false;
+  private static boolean logRequestUrl = true;
 
   private String USER_AGENT_STRING = null;
 
@@ -191,12 +191,18 @@ class HTTPRequest implements Callback {
       }
     }
 
-    byte[] body;
+    byte[] body = new byte[0];
     try {
       body = response.body().bytes();
+    } catch (ClassCastException ccException) {
+      onFailure(call, new IOException("Workaround for framework bug on OkHttp3", ccException));
+      return;
     } catch (IOException ioException) {
       onFailure(call, ioException);
       // throw ioException;
+      return;
+    } catch (NullPointerException npException) {
+      onFailure(call, new IOException("NPE", npException));
       return;
     } finally {
       response.body().close();
